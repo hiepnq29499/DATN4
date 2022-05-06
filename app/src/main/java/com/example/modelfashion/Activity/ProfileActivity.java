@@ -198,7 +198,7 @@ public class ProfileActivity extends AppCompatActivity {
 //                Toast.makeText(ProfileActivity.this, t.toString(), Toast.LENGTH_SHORT).show();
 //            }
 //        });
-    }
+//    }
 
     //load dữ liệu lên màn hình
     private void loadDetails() {
@@ -221,7 +221,6 @@ public class ProfileActivity extends AppCompatActivity {
                 tvActProfileEmail.setText(obj.getString(Constants.KEY_EMAIL));
                 Glide.with(ProfileActivity.this).load(obj.getString(Constants.KEY_AVARTAR)).into(imgActProfileAvatar);
                 Log.d("My App", obj.toString());
-
             } catch (Throwable t) {
                 Log.e("My App", "Could not parse malformed JSON: \"" + userData + "\"");
             }
