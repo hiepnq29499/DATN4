@@ -179,7 +179,6 @@ public class ProductDetailActivity extends AppCompatActivity {
         tv_product_name.setText("MARU BLAZER (WHITE)");
         tv_product_category.setText("Loại sản phẩm: MARU BLAZER");
         tv_product_availability.setText("Tình trạng: còn hàng");
-
         btn_mua_ngay.setOnClickListener(view -> {
             // TODO BUY
             if (user_id.equalsIgnoreCase("null")) {
