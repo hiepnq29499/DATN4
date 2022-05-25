@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void getUserData(){
         SharedPreferences sharedPreferences = getSharedPreferences(Constants.KEY_SAVE_USER, Context.MODE_MULTI_PROCESS);
-        isLogin = sharedPreferences.getBoolean(Constants.KEY_CHECK_LOGIN,false);
+        isLogin = sharedPreferences.getBoolean(Constants.KEY_CHECK_LOGIN, false);
         if (isLogin == false) {
 //            User user = new User("", "", "", "", "", "", "");
 //            SharedPreferences.Editor prefsEditor = sharedPreferences.edit();

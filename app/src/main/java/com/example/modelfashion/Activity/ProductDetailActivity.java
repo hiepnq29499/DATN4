@@ -7,12 +7,18 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -39,7 +45,7 @@ public class ProductDetailActivity extends AppCompatActivity {
     private ImageView img_back, img_cart, img_prev, img_next, img_product,
             img_size_s, img_size_m, img_size_l, img_size_xl;
     private TextView tv_price, tv_product_name, tv_product_category, tv_product_availability,
-            btn_mua_ngay, btn_them_vao_gio_hang;
+            btn_mua_ngay, btn_them_vao_gio_hang,dialog_info_btn_huy;
     private ViewPager2 viewPager;
     private ViewPagerDetailProductAdapter adapter;
     private Repository repository;
@@ -177,8 +183,17 @@ public class ProductDetailActivity extends AppCompatActivity {
             // TODO BUY
             if (user_id.equalsIgnoreCase("null")) {
                 Toast.makeText(this, "Bạn chưa thực hiện đăng nhập", Toast.LENGTH_SHORT).show();
-            }
-            else {
+                Dialog dialog = new Dialog(this);
+                dialog.setContentView(R.layout.dialog_input_info_user);
+                dialog_info_btn_huy = dialog.findViewById(R.id.dialog_info_btn_huy);
+                dialog_info_btn_huy.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
+            } else {
                 String date = LocalDate.now().toString();
                 ApiRetrofit.apiRetrofit.CheckSizeLeft(size_id, "1").enqueue(new Callback<String>() {
                     @Override
@@ -204,7 +219,6 @@ public class ProductDetailActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<String> call, Throwable t) {
-
                     }
                 });
             }
@@ -213,6 +227,16 @@ public class ProductDetailActivity extends AppCompatActivity {
             // TODO ADD ON CART
             if (user_id.equalsIgnoreCase("null")) {
                 Toast.makeText(this, "Bạn chưa thực hiện đăng nhập", Toast.LENGTH_SHORT).show();
+                Dialog dialog = new Dialog(this);
+                dialog.setContentView(R.layout.dialog_input_info_user);
+                dialog_info_btn_huy = dialog.findViewById(R.id.dialog_info_btn_huy);
+                dialog_info_btn_huy.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
             } else {
                 ApiRetrofit.apiRetrofit.CheckSizeLeft(size_id, "1").enqueue(new Callback<String>() {
                     @Override
@@ -232,7 +256,6 @@ public class ProductDetailActivity extends AppCompatActivity {
                                         }
                                     }
                                 }
-
                                 @Override
                                 public void onFailure(Call<String> call, Throwable t) {
 
@@ -246,9 +269,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(Call<String> call, Throwable t) {
-
-                    }
+                    public void onFailure(Call<String> call, Throwable t) {}
                 });
             }
         });
@@ -277,6 +298,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         tv_product_availability = findViewById(R.id.tv_product_availability);
         btn_mua_ngay = findViewById(R.id.btn_mua_ngay);
         btn_them_vao_gio_hang = findViewById(R.id.btn_them_vao_gio_hang);
+
 
         adapter = new ViewPagerDetailProductAdapter();
 
