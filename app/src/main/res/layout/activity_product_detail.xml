@@ -220,6 +220,7 @@
             app:layout_constraintTop_toTopOf="@+id/textView7"
             app:srcCompat="@drawable/ic_size_xl" />
 
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ProgressBar
