@@ -49,10 +49,10 @@ public class SignInActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_in);
-        viewHolder();
-        setListener();
-        getPreferencesData();
+        setContentView(R.layout.activity_sign_in_2);
+//        viewHolder();
+//        setListener();
+//        getPreferencesData();
     }
 
     // tham chiếu
