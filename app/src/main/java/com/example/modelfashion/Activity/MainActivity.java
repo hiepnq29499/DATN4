@@ -10,6 +10,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -31,6 +32,8 @@ import com.example.modelfashion.Fragment.MainFragment;
 import com.example.modelfashion.Model.response.User.User;
 import com.example.modelfashion.R;
 import com.example.modelfashion.Utility.Constants;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -41,6 +44,7 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity {
     private static final String CHANNEL_ID = "100";
     String user_id;
+    String account_type;
     Boolean isLogin;
     Bundle info;
     public static BottomNavigationView navigationView;
@@ -51,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         info = new Bundle();
         getUserData();
         info.putString("user_id",user_id);
+        info.putString("account_type",account_type);
         replaceFragment(new MainFragment());
         navigationView=findViewById(R.id.bottom_navigation_view_linear);
         navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -81,6 +86,16 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+//        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(MainActivity.this);
+//        if (acct != null) {
+//            String personName = acct.getDisplayName();
+//            String personGivenName = acct.getGivenName();
+//            String personFamilyName = acct.getFamilyName();
+//            String personEmail = acct.getEmail();
+//            String personId = acct.getId();
+//            Uri personPhoto = acct.getPhotoUrl();
+//            Toast.makeText(this, ""+personName+" "+personEmail, Toast.LENGTH_LONG).show();
+//        }
         createNotificationChannel();
         getToken();
     }
@@ -124,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     JSONObject obj = new JSONObject(userData);
                     user_id = obj.getString(Constants.KEY_ID);
+                    account_type = obj.getString(Constants.KEY_ACCOUNT_TYPE);
                     Log.d("My App", obj.toString()+user_id);
 
                 } catch (Throwable t) {
@@ -139,7 +155,6 @@ public class MainActivity extends AppCompatActivity {
         fm.setArguments(info);
         fragmentTransaction.replace(R.id.frmlayout,fm);
         fragmentTransaction.commit();
-
     }
 
     boolean doubleBackToExitPressedOnce = false;

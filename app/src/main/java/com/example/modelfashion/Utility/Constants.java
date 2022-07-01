@@ -19,8 +19,8 @@ public class Constants {
     public static final String KEY_CHECK_LOGIN = "isLogin";
     public static final String KEY_GET_USER = "user";
     public static final String KEY_ID = "id";
-    public static final String KEY_TAI_KHOAN = "taiKhoan";
-    public static final String KEY_MAT_KHAU = "matKhau";
+    public static final String KEY_TAI_KHOAN = "userName";
+    public static final String KEY_MAT_KHAU = "password";
     public static final String KEY_EMAIL = "email";
     public static final String KEY_FULL_NAME = "fullName";
     public static final String KEY_PHONE = "phone";
@@ -28,6 +28,8 @@ public class Constants {
     public static final String KEY_BIRTHDAY = "birthdate";
     public static final String KEY_ADDRESS = "address";
     public static final String KEY_AVARTAR = "avatar";
+    public static final String KEY_ACTIVE_STATUS = "activeStatus";
+    public static final String KEY_ACCOUNT_TYPE = "accountType";
 
     // login
     public static final String KEY_SAVE_USER_INFO = "KEY_SAVE_USER_INFO";

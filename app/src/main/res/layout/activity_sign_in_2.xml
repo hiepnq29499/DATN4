@@ -7,7 +7,7 @@
     android:gravity="center_horizontal"
     android:background="#374089">
     <TextView
-        android:layout_marginTop="173dp"
+        android:layout_marginTop="153dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Welcome to Store"
@@ -61,28 +61,51 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/border_edit_text"
+            android:id="@+id/edt_pw"
             android:textColor="@color/white"
             android:inputType="textPassword"
             android:hint="Password"
             />
     </com.google.android.material.textfield.TextInputLayout>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/cbSaveValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nhớ mật khẩu?"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_marginLeft="90dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:id="@+id/tv_get_pw"
+            android:text="Quên mật khẩu?"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
     <TextView
-        android:layout_marginTop="38dp"
+        android:layout_marginTop="14dp"
         android:layout_width="311dp"
         android:layout_height="48dp"
         android:text="Login"
+        android:id="@+id/tv_login"
         android:gravity="center"
         android:textColor="#374089"
         android:background="@drawable/border_button_fb"/>
-    <TextView
-        android:layout_marginTop="32.5dp"
-        android:layout_width="198dp"
-        android:layout_height="22dp"
-        android:text="Forgot your password?"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:fontFamily="@font/montserrat_variablefont_wght"
-        android:textColor="@color/white"/>
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/sign_in_button"
+        android:layout_marginTop="5dp"
+        android:layout_width="311dp"
+        android:layout_height="48dp" />
     <LinearLayout
         android:layout_marginTop="45.5dp"
         android:layout_width="276dp"
@@ -98,6 +121,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" Sign up"
+            android:id="@+id/tv_signup"
             android:textStyle="bold"
             android:textColor="@color/white"/>
     </LinearLayout>

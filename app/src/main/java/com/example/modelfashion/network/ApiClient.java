@@ -23,7 +23,7 @@ public final class ApiClient {
 
         Retrofit retrofit = new Retrofit.Builder()
 //                .baseUrl("https://test-api-spring-boot.herokuapp.com/")
-                .baseUrl("https://cuongb2k53lvt.000webhostapp.com/FashionShop-phpServer/")
+                .baseUrl("http://192.168.1.14/FashionShop-phpServer/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

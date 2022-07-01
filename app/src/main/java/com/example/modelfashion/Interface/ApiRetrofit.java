@@ -14,8 +14,10 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -30,8 +32,11 @@ import retrofit2.http.Part;
 import retrofit2.http.Query;
 
 public interface ApiRetrofit {
+    OkHttpClient client = new OkHttpClient.Builder().connectTimeout(100, TimeUnit.SECONDS)
+            .readTimeout(100,TimeUnit.SECONDS).build();
     Gson gson = new GsonBuilder().setLenient().create();
-    ApiRetrofit apiRetrofit = new Retrofit.Builder().baseUrl("https://cuongb2k53lvt.000webhostapp.com/")
+    ApiRetrofit apiRetrofit = new Retrofit.Builder().baseUrl("http://192.168.1.14/")
+            .client(client)
             .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
@@ -115,4 +120,16 @@ public interface ApiRetrofit {
     @FormUrlEncoded
     @POST("FashionShop-phpServer/delete_fcm_token.php")
     Call<String> DeleteFcmToken(@Field("user_id") String user_id, @Field("token") String token);
+
+    @FormUrlEncoded
+    @POST("FashionShop-phpServer/send_mail_confirm.php")
+    Call<String> SendConfirmEmail(@Field("email") String email);
+
+    @FormUrlEncoded
+    @POST("FashionShop-phpServer/get_confirm_mail_code.php")
+    Call<String> GetConfirmMail(@Field("email") String email, @Field("code") String code);
+
+    @FormUrlEncoded
+    @POST("FashionShop-phpServer/login_with_google.php")
+    Call<User> LoginWithGoogle(@Field("email") String email);
 }

@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:background="#374089">
     <ImageView
@@ -10,6 +11,7 @@
         android:layout_marginLeft="10dp"
         android:layout_width="35dp"
         android:layout_height="50dp"
+        android:id="@+id/imgBack"
         android:src="@drawable/ic_left_arrow_2"/>
     <LinearLayout
         android:layout_width="match_parent"
@@ -40,6 +42,7 @@
             android:layout_marginTop="45dp"
             android:layout_width="311dp"
             android:textColorHint="@color/white"
+            app:hintTextColor="@color/white"
             app:boxStrokeWidthFocused="0dp"
             app:boxStrokeWidth="0dp"
             app:endIconMode="clear_text"
@@ -51,12 +54,14 @@
                 android:background="@drawable/border_edit_text"
                 android:textColor="@color/white"
                 android:hint="User Name"
+                android:id="@+id/edtName"
                 />
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
             android:layout_marginTop="16dp"
             android:layout_width="311dp"
             android:textColorHint="@color/white"
+            app:hintTextColor="@color/white"
             app:boxStrokeWidthFocused="0dp"
             app:boxStrokeWidth="0dp"
             app:endIconMode="clear_text"
@@ -68,12 +73,14 @@
                 android:background="@drawable/border_edit_text"
                 android:textColor="@color/white"
                 android:hint="Email address"
+                android:id="@+id/edtEmail"
                 />
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
             android:layout_marginTop="16dp"
             android:layout_width="311dp"
             android:textColorHint="@color/white"
+            app:hintTextColor="@color/white"
             app:boxStrokeWidthFocused="0dp"
             app:boxStrokeWidth="0dp"
             android:layout_height="wrap_content"
@@ -85,6 +92,7 @@
                 android:background="@drawable/border_edit_text"
                 android:textColor="@color/white"
                 android:hint="Password"
+                android:id="@+id/edtPw"
                 android:inputType="textPassword"
                 />
         </com.google.android.material.textfield.TextInputLayout>
@@ -92,6 +100,7 @@
             android:layout_marginTop="16dp"
             android:layout_width="311dp"
             android:textColorHint="@color/white"
+            app:hintTextColor="@color/white"
             app:boxStrokeWidthFocused="0dp"
             app:boxStrokeWidth="0dp"
             android:layout_height="wrap_content"
@@ -103,26 +112,75 @@
                 android:background="@drawable/border_edit_text"
                 android:textColor="@color/white"
                 android:hint="Re-enter Password"
+                android:id="@+id/edtRePw"
                 android:inputType="textPassword"
                 />
         </com.google.android.material.textfield.TextInputLayout>
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="311dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <CheckBox
+                android:id="@+id/cbRules"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tôi đã đọc và đồng ý với "
+                android:textColor="@color/white"
+                android:buttonTint="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvRules"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chính sách bảo mật"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:ignore="InvalidId"
+                />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
         <TextView
-            android:layout_marginTop="38dp"
+            android:layout_marginTop="8dp"
             android:layout_width="311dp"
             android:layout_height="48dp"
-            android:text="Login"
+            android:text="Sign-Up"
             android:gravity="center"
             android:textColor="#374089"
+            android:id="@+id/tvSignUp"
             android:background="@drawable/border_button_fb"/>
         <TextView
             android:layout_marginTop="32.5dp"
             android:layout_width="198dp"
             android:layout_height="22dp"
             android:text="Forgot your password?"
+            android:id="@+id/tvForgotPw"
             android:gravity="center"
             android:textStyle="bold"
             android:fontFamily="@font/montserrat_variablefont_wght"
             android:textColor="@color/white"/>
+        <LinearLayout
+            android:layout_marginTop="45.5dp"
+            android:layout_width="276dp"
+            android:layout_height="22dp"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Have an account,"
+                android:textColor="@color/white"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" Sign in"
+                android:id="@+id/tvSignIn"
+                android:textStyle="bold"
+                android:textColor="@color/white"/>
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

@@ -10,7 +10,6 @@
     tools:context=".Activity.SignIn.SignUpActivity">
 
     <ImageView
-        android:id="@+id/imgBack"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_gravity="left"
@@ -96,7 +95,6 @@
             android:orientation="horizontal">
 
             <CheckBox
-                android:id="@+id/cbRules"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Tôi đã đọc và đồng ý với "
@@ -104,7 +102,6 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/tvRules"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Chính sách bảo mật"

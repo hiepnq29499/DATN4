@@ -1,32 +1,34 @@
 package com.example.modelfashion.Model.response.User;
 
-import java.util.List;
-
 public class User {
     private String id;
-    private String taiKhoan;
-    private String matKhau;
+    private String userName;
+    private String password;
     private String email;
     private String fullName;
     private String phone;
     private String sex;
     private String birthdate;
     private String address;
-    private String fund;
+    private String totalSpend;
     private String avatar;
+    private String activeStatus;
+    private String accountType;
 
-    public User(String id, String taiKhoan, String matKhau, String email, String fullName, String phone, String sex, String birthdate, String address, String fund, String avatar) {
+    public User(String id, String userName, String password, String email, String fullName, String phone, String sex, String birthdate, String address, String totalSpend, String avatar, String activeStatus, String accountType) {
         this.id = id;
-        this.taiKhoan = taiKhoan;
-        this.matKhau = matKhau;
+        this.userName = userName;
+        this.password = password;
         this.email = email;
         this.fullName = fullName;
         this.phone = phone;
         this.sex = sex;
         this.birthdate = birthdate;
         this.address = address;
-        this.fund = fund;
+        this.totalSpend = totalSpend;
         this.avatar = avatar;
+        this.activeStatus = activeStatus;
+        this.accountType = accountType;
     }
 
     public User(String s, String s1, String s2, String s3, String s4, String s5, String s6) {
@@ -36,16 +38,18 @@ public class User {
     public String toString() {
         return "{"+
                 "id='" + id + '\'' +
-                ", taiKhoan='" + taiKhoan + '\'' +
-                ", matKhau='" + matKhau + '\'' +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", fullName='" + fullName + '\'' +
                 ", phone='" + phone + '\'' +
                 ", sex='" + sex + '\'' +
                 ", birthdate='" + birthdate + '\'' +
                 ", address='" + address + '\'' +
-                ", fund='" + fund + '\'' +
+                ", totalSpend='" + totalSpend + '\'' +
                 ", avatar='" + avatar + '\'' +
+                ", activeStatus='" + activeStatus + '\'' +
+                ", accountType='"+accountType+'\''+
                 '}';
     }
 
@@ -57,20 +61,20 @@ public class User {
         this.id = id;
     }
 
-    public String getTaiKhoan() {
-        return taiKhoan;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setTaiKhoan(String taiKhoan) {
-        this.taiKhoan = taiKhoan;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public String getMatKhau() {
-        return matKhau;
+    public String getPassword() {
+        return password;
     }
 
-    public void setMatKhau(String matKhau) {
-        this.matKhau = matKhau;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getEmail() {
@@ -121,12 +125,12 @@ public class User {
         this.address = address;
     }
 
-    public String getFund() {
-        return fund;
+    public String getTotalSpend() {
+        return totalSpend;
     }
 
-    public void setFund(String fund) {
-        this.fund = fund;
+    public void setTotalSpend(String totalSpend) {
+        this.totalSpend = totalSpend;
     }
 
     public String getAvatar() {
@@ -135,5 +139,21 @@ public class User {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    public String getActiveStatus() {
+        return activeStatus;
+    }
+
+    public void setActiveStatus(String activeStatus) {
+        this.activeStatus = activeStatus;
+    }
+
+    public String getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(String accountType) {
+        this.accountType = accountType;
     }
 }

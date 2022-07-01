@@ -60,9 +60,9 @@ public class MainFragment extends Fragment {
     private ImageView avatar;
     private String user_id;
     ArrayList<ItemSaleMain> arrItem = new ArrayList<>();
-    private TextView tvCurrentDate, tvGreeting;
-    private ImageView imgUserAvatar;
-    private PreferenceManager preferenceManager;
+//    private TextView tvCurrentDate, tvGreeting;
+//    private ImageView imgUserAvatar;
+//    private PreferenceManager preferenceManager;
 
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
@@ -109,10 +109,10 @@ public class MainFragment extends Fragment {
         }catch (Exception e){}
 
 
-        tvCurrentDate = view.findViewById(R.id.tv_current_date);
-        tvGreeting = view.findViewById(R.id.tv_greeting);
-        imgUserAvatar = view.findViewById(R.id.img_user_avatar);
-        preferenceManager = new PreferenceManager(requireContext());
+//        tvCurrentDate = view.findViewById(R.id.tv_current_date);
+//        tvGreeting = view.findViewById(R.id.tv_greeting);
+//        imgUserAvatar = view.findViewById(R.id.img_user_avatar);
+//        preferenceManager = new PreferenceManager(requireContext());
 
         arrItem.add(new ItemSaleMain(R.drawable.test_img));
         arrItem.add(new ItemSaleMain(R.drawable.test_img));
@@ -132,7 +132,7 @@ public class MainFragment extends Fragment {
         });
         initData();
 
-        initHeader();
+//        initHeader();
 //        initClickProfileAvatar();
 
         refreshLayout.setOnRefreshListener(() -> {
@@ -154,18 +154,18 @@ public class MainFragment extends Fragment {
 //
 //    }
 
-    private void initHeader() {
-        DateFormat dateFormat = new SimpleDateFormat("EEE, d MMM yyyy");
-        Calendar cal = Calendar.getInstance(Locale.US);
-        tvCurrentDate.setText(dateFormat.format(cal.getTime()));
-
-        if (cal.get(Calendar.AM_PM) == Calendar.AM) {
-            tvGreeting.setText("Chào buổi sáng");
-        } else {
-            tvGreeting.setText("Chào buổi tối");
-        }
-        Glide.with(requireContext()).load("").placeholder(R.drawable.ic_profile).into(imgUserAvatar);
-    }
+//    private void initHeader() {
+//        DateFormat dateFormat = new SimpleDateFormat("EEE, d MMM yyyy");
+//        Calendar cal = Calendar.getInstance(Locale.US);
+//        tvCurrentDate.setText(dateFormat.format(cal.getTime()));
+//
+//        if (cal.get(Calendar.AM_PM) == Calendar.AM) {
+//            tvGreeting.setText("Chào buổi sáng");
+//        } else {
+//            tvGreeting.setText("Chào buổi tối");
+//        }
+//        Glide.with(requireContext()).load("").placeholder(R.drawable.ic_profile).into(imgUserAvatar);
+//    }
 
     private void initData() {
         repository = new Repository(requireContext());

@@ -1,5 +1,6 @@
 package com.example.modelfashion.Fragment;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -28,12 +30,17 @@ import com.example.modelfashion.Model.response.User.User;
 import com.example.modelfashion.R;
 import com.example.modelfashion.Utility.Constants;
 import com.example.modelfashion.Utility.PreferenceManager;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 import org.json.JSONObject;
+
+import java.util.concurrent.Executor;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -50,7 +57,9 @@ public class FragmentProfile extends Fragment {
     Boolean isLogin;
     ProgressLoadingCommon progressLoadingCommon;
     String user_id;
+    String account_type;
     String token;
+    GoogleSignInClient mGoogleSignInClient;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -70,24 +79,29 @@ public class FragmentProfile extends Fragment {
         btn_status3 = view.findViewById(R.id.btn_frag_Profile_status3);
         Bundle info = getArguments();
         user_id = info.getString("user_id");
+        account_type = info.getString("account_type");
         preferenceManager = new PreferenceManager(getContext());
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+        mGoogleSignInClient = GoogleSignIn.getClient(getActivity(), gso);
         loadDetails();
         setListener();
-        btn_logout.setEnabled(false);
-        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
-            @Override
-            public void onComplete(@NonNull Task<String> task) {
-                token = task.getResult();
-                btn_logout.setEnabled(true);
-            }
-        });
+//        btn_logout.setEnabled(false);
+//        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
+//            @Override
+//            public void onComplete(@NonNull Task<String> task) {
+//                token = task.getResult();
+//                btn_logout.setEnabled(true);
+//            }
+//        });
         return view;
     }
 
     //load dữ liệu lên màn hình
     private void loadDetails() {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Constants.KEY_SAVE_USER, Context.MODE_MULTI_PROCESS);
-        isLogin = sharedPreferences.getBoolean(Constants.KEY_CHECK_LOGIN, true);
+        isLogin = sharedPreferences.getBoolean(Constants.KEY_CHECK_LOGIN, false);
         if (isLogin == false) {
             User user = new User("", "", "", "", "", "", "");
             SharedPreferences.Editor prefsEditor = sharedPreferences.edit();
@@ -137,13 +151,22 @@ public class FragmentProfile extends Fragment {
         });
 
         btn_logout.setOnClickListener(v -> {
+            openDialog();
+//            switch (account_type) {
+//                case "normal":
+//                    openDialog();
+//                    break;
+//                case "google":
+//                    signOut();
+//                    break;
+//            }
 //            progressLoadingCommon.showProgressLoading(getActivity());
-            FirebaseMessaging.getInstance().deleteToken().addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    DeleteToken(user_id);
-                }
-            });
+//            FirebaseMessaging.getInstance().deleteToken().addOnCompleteListener(new OnCompleteListener<Void>() {
+//                @Override
+//                public void onComplete(@NonNull Task<Void> task) {
+//                    DeleteToken(user_id);
+//                }
+//            });
 //            openDialog();
         });
         btn_profile.setOnClickListener(v -> {
@@ -176,6 +199,15 @@ public class FragmentProfile extends Fragment {
             startActivity(intent);
         });
     }
+    private void signOut() {
+        mGoogleSignInClient.signOut()
+                .addOnCompleteListener(getActivity(), new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Toast.makeText(getActivity(), "Logout successfull", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
     private void DeleteToken(String user_id){
         ApiRetrofit.apiRetrofit.DeleteFcmToken(user_id,token).enqueue(new Callback<String>() {
             @Override
@@ -199,38 +231,39 @@ public class FragmentProfile extends Fragment {
 
     }
 
-//    private void openDialog() {
-//        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-//
-//        // Set Title and Message:
-//        builder.setTitle("Đăng xuất")
-//                .setMessage("Bạn có muốn đăng xuất không?");
-//
-//        //
-//        builder.setCancelable(true);
-//        builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialogInterface, int i) {
-//                builder.create().dismiss();
-//            }
-//        });
-//        // Create "Positive" button with OnClickListener.
-//        builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
-//            public void onClick(DialogInterface dialog, int id) {
-//                //progressLoadingCommon.showProgressLoading(getActivity());
-//                SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Constants.KEY_SAVE_USER, Context.MODE_MULTI_PROCESS);
-//                sharedPreferences.edit().remove(Constants.KEY_GET_USER).commit();
-//                SharedPreferences.Editor prefsEditor = sharedPreferences.edit();
-//                prefsEditor.putBoolean(Constants.KEY_CHECK_LOGIN, false);
-//                prefsEditor.apply();
-//                img.setImageResource(R.drawable.bg_gradient_blue);
-//                loadDetails();
-//            }
-//        });
-//        // Create AlertDialog:
-//        AlertDialog alert = builder.create();
-//        alert.show();
-//    }
+    private void openDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+        // Set Title and Message:
+        builder.setTitle("Đăng xuất")
+                .setMessage("Bạn có muốn đăng xuất không?");
+
+        //
+        builder.setCancelable(true);
+        builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                builder.create().dismiss();
+            }
+        });
+        // Create "Positive" button with OnClickListener.
+        builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                signOut();
+                //progressLoadingCommon.showProgressLoading(getActivity());
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Constants.KEY_SAVE_USER, Context.MODE_MULTI_PROCESS);
+                sharedPreferences.edit().remove(Constants.KEY_GET_USER).commit();
+                SharedPreferences.Editor prefsEditor = sharedPreferences.edit();
+                prefsEditor.putBoolean(Constants.KEY_CHECK_LOGIN, false);
+                prefsEditor.apply();
+                img.setImageResource(R.drawable.bg_gradient_blue);
+                loadDetails();
+            }
+        });
+        // Create AlertDialog:
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
 }
 
 

@@ -32,7 +32,9 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("insert_user.php")
     Call<String> insertUser(@Field("taikhoan") String taikhoan,
-                            @Field("matkhau") String matkhau);
+                            @Field("matkhau") String matkhau,
+                            @Field("email") String email,
+                            @Field("acount_type") String acount_type);
 
     @FormUrlEncoded
     @POST("check_login_user.php")
