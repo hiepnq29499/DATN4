@@ -64,7 +64,7 @@ public class ProductDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product_detail);
+        setContentView(R.layout.new_product_detail);
         Intent intent = getIntent();
         user_id = intent.getStringExtra("user_id");
         productName = intent.getStringExtra(KEY_PRODUCT_NAME);
@@ -85,9 +85,9 @@ public class ProductDetailActivity extends AppCompatActivity {
         });
         repository = new Repository(getApplicationContext());
 
-        initView();
-        initData();
-        initListener();
+//        initView();
+//        initData();
+//        initListener();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -112,7 +112,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         price = myProduct.getPrice();
         tv_product_name.setText(myProduct.getProduct_name());
         tv_price.setText(format.format(Integer.parseInt(myProduct.getPrice())) + " VNĐ");
-        tv_product_category.setText("Loại sản phẩm: " + myProduct.getSubtype());
+        tv_product_category.setText("Loại sản phẩm: " + myProduct.getType());
 
         Glide.with(this).load(myProduct.getPhotos().get(0)).placeholder(R.drawable.test_img2).into(img_product);
         if (Integer.parseInt(myProduct.getSizes().get(0).getQuantity()) == 0)

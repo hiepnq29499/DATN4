@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,7 +21,6 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.bumptech.glide.Glide;
 import com.example.modelfashion.Activity.ProductDetailActivity;
-import com.example.modelfashion.Activity.SignIn.SignInActivity;
 import com.example.modelfashion.Adapter.ProductListAdapter;
 import com.example.modelfashion.Adapter.VpSaleMainFmAdapter;
 import com.example.modelfashion.Interface.ApiRetrofit;
@@ -31,15 +29,10 @@ import com.example.modelfashion.Model.response.User.User;
 import com.example.modelfashion.Model.response.my_product.MyProduct;
 import com.example.modelfashion.R;
 import com.example.modelfashion.Utility.Constants;
-import com.example.modelfashion.Utility.PreferenceManager;
 import com.example.modelfashion.network.Repository;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Set;
 
 import io.reactivex.Single;

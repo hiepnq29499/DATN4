@@ -43,7 +43,8 @@
             android:background="@drawable/border_edit_text"
             android:id="@+id/edt_uname"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="55dp"
+            android:paddingLeft="5dp"
             android:textColor="@color/white"
             />
     </com.google.android.material.textfield.TextInputLayout>
@@ -59,9 +60,10 @@
         app:passwordToggleTint="@color/white">
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="55dp"
             android:background="@drawable/border_edit_text"
             android:id="@+id/edt_pw"
+            android:paddingLeft="5dp"
             android:textColor="@color/white"
             android:inputType="textPassword"
             android:hint="Password"
@@ -79,6 +81,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nhớ mật khẩu?"
+            android:buttonTint="@color/white"
             android:textColor="@color/white"
             android:textSize="14sp" />
 

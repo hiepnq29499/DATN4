@@ -16,7 +16,7 @@
         android:orientation="vertical"
         tools:ignore="MissingConstraints">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
@@ -37,7 +37,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:layout_marginStart="254dp"
+                android:layout_marginStart="0dp"
+                android:layout_alignParentRight="true"
                 >
                 <ImageView
                     android:layout_width="wrap_content"
@@ -52,7 +53,7 @@
                     android:src="@drawable/ic_cart"
                     />
             </LinearLayout>
-        </LinearLayout>
+        </RelativeLayout>
 
      <androidx.cardview.widget.CardView
          android:layout_width="match_parent"
@@ -126,28 +127,33 @@
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="10dp"
                     android:orientation="vertical">
-
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:weightSum="9">
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3"
+                            android:id="@+id/brand_logo1"
                             android:layout_marginEnd="10dp"
                             android:src="@drawable/ic_vs1" />
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3"
+                            android:id="@+id/brand_logo2"
                             android:layout_marginEnd="10dp"
                             android:src="@drawable/ic_lv1" />
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:id="@+id/brand_logo3"
+                            android:layout_weight="3"
                             android:src="@drawable/ic_dr1" />
 
                     </LinearLayout>
@@ -156,32 +162,38 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
+                        android:weightSum="9"
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3"
+                            android:id="@+id/brand_logo4"
                             android:layout_marginEnd="10dp"
                             android:src="@drawable/ic_hm1" />
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3"
+                            android:id="@+id/brand_logo5"
                             android:layout_marginEnd="10dp"
                             android:src="@drawable/ic_gc1" />
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3"
+                            android:id="@+id/brand_logo6"
                             android:src="@drawable/ic_bbr1" />
-
                     </LinearLayout>
-
                 </LinearLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
+                    android:id="@+id/view_load"
                     android:background="@color/gray" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -191,24 +203,8 @@
                     android:background="#F4F4F6"
                     android:orientation="vertical"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:itemCount="3"
                     tools:listitem="@layout/rv_new_product_item_layout" />
-
-
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="gone" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -29,6 +29,8 @@ import com.example.modelfashion.Fragment.CartFragment;
 import com.example.modelfashion.Fragment.CategoryFragment;
 import com.example.modelfashion.Fragment.FragmentProfile;
 import com.example.modelfashion.Fragment.MainFragment;
+import com.example.modelfashion.Fragment.NewProductFragment;
+import com.example.modelfashion.Fragment.NewProfileFragment;
 import com.example.modelfashion.Model.response.User.User;
 import com.example.modelfashion.R;
 import com.example.modelfashion.Utility.Constants;
@@ -56,16 +58,20 @@ public class MainActivity extends AppCompatActivity {
         getUserData();
         info.putString("user_id",user_id);
         info.putString("account_type",account_type);
-        replaceFragment(new MainFragment());
+//        replaceFragment(new MainFragment());
+        replaceFragment(new NewProductFragment());
         navigationView=findViewById(R.id.bottom_navigation_view_linear);
         navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.main_item_home:
-                        MainFragment mainFragment = new MainFragment();
-                        mainFragment.setArguments(info);
-                        replaceFragment(mainFragment);
+//                        MainFragment mainFragment = new MainFragment();
+//                        mainFragment.setArguments(info);
+//                        replaceFragment(mainFragment);
+                        NewProductFragment newProductFragment = new NewProductFragment();
+                        newProductFragment.setArguments(info);
+                        replaceFragment(newProductFragment);
                         break;
                     case R.id.main_item_cart:
                         CartFragment cartFragment = new CartFragment();
@@ -78,9 +84,12 @@ public class MainActivity extends AppCompatActivity {
                         replaceFragment(categoryFragment);
                         break;
                     case R.id.main_item_profile:
-                        FragmentProfile fragmentProfile = new FragmentProfile();
-                        fragmentProfile.setArguments(info);
-                        replaceFragment(fragmentProfile);
+//                        FragmentProfile fragmentProfile = new FragmentProfile();
+//                        fragmentProfile.setArguments(info);
+//                        replaceFragment(fragmentProfile);
+                        NewProfileFragment newProfileFragment = new NewProfileFragment();
+                        newProfileFragment.setArguments(info);
+                        replaceFragment(newProfileFragment);
                         break;
                 }
                 return true;

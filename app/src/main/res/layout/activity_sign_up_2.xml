@@ -39,7 +39,7 @@
             android:fontFamily="@font/montserrat_variablefont_wght"
             android:textColor="@color/white"/>
         <com.google.android.material.textfield.TextInputLayout
-            android:layout_marginTop="45dp"
+            android:layout_marginTop="15dp"
             android:layout_width="311dp"
             android:textColorHint="@color/white"
             app:hintTextColor="@color/white"
@@ -50,10 +50,11 @@
             android:layout_height="wrap_content">
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="55dp"
                 android:background="@drawable/border_edit_text"
                 android:textColor="@color/white"
                 android:hint="User Name"
+                android:paddingLeft="5dp"
                 android:id="@+id/edtName"
                 />
         </com.google.android.material.textfield.TextInputLayout>
@@ -69,10 +70,11 @@
             android:layout_height="wrap_content">
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="55dp"
                 android:background="@drawable/border_edit_text"
                 android:textColor="@color/white"
                 android:hint="Email address"
+                android:paddingLeft="5dp"
                 android:id="@+id/edtEmail"
                 />
         </com.google.android.material.textfield.TextInputLayout>
@@ -88,10 +90,11 @@
             app:passwordToggleTint="@color/white">
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="55dp"
                 android:background="@drawable/border_edit_text"
                 android:textColor="@color/white"
                 android:hint="Password"
+                android:paddingLeft="5dp"
                 android:id="@+id/edtPw"
                 android:inputType="textPassword"
                 />
@@ -108,10 +111,11 @@
             app:passwordToggleTint="@color/white">
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="55dp"
                 android:background="@drawable/border_edit_text"
                 android:textColor="@color/white"
                 android:hint="Re-enter Password"
+                android:paddingLeft="5dp"
                 android:id="@+id/edtRePw"
                 android:inputType="textPassword"
                 />
@@ -153,7 +157,7 @@
             android:id="@+id/tvSignUp"
             android:background="@drawable/border_button_fb"/>
         <TextView
-            android:layout_marginTop="32.5dp"
+            android:layout_marginTop="22.5dp"
             android:layout_width="198dp"
             android:layout_height="22dp"
             android:text="Forgot your password?"
@@ -163,7 +167,7 @@
             android:fontFamily="@font/montserrat_variablefont_wght"
             android:textColor="@color/white"/>
         <LinearLayout
-            android:layout_marginTop="45.5dp"
+            android:layout_marginTop="25.5dp"
             android:layout_width="276dp"
             android:layout_height="22dp"
             android:orientation="horizontal"

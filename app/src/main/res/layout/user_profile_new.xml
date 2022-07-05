@@ -60,6 +60,7 @@
                 android:layout_height="80dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="30dp"
+                android:id="@+id/ci_avatar"
                 android:src="@drawable/ic_avatar2">
             </de.hdodenhof.circleimageview.CircleImageView>
 
@@ -75,23 +76,25 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nunito_bold"
                     android:text="name"
+                    android:id="@+id/tv_profile_name1"
                     android:textColor="@color/white"
                     android:textSize="20sp" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="+84969537055"
-                    android:textSize="17sp"
-                    android:textColor="#9F9F9F"
-                    />
-
+                    android:text="Login"
+                    android:fontFamily="@font/nunito_bold"
+                    android:id="@+id/tv_profile_login"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="trankhanhtoan8386@gmail.com"
-                    android:textColor="#9F9F9F"
-                    android:textSize="17sp" />
+                    android:textColor="@color/white"
+                    android:id="@+id/tv_profile_register"
+                    android:text="Register"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/nunito_bold"/>
 
             </LinearLayout>
 
@@ -141,6 +144,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="toandaukho123"
+                    android:id="@+id/tv_profile_name2"
                     android:textColor="@color/black"
                     android:textSize="17sp"
                     />
@@ -171,6 +175,7 @@
                     android:layout_height="wrap_content"
                     android:text="trankhanhtoan8386@gmail.com"
                     android:textColor="@color/black"
+                    android:id="@+id/tv_profile_email"
                     android:textSize="17sp"
                     />
             </LinearLayout>
@@ -201,6 +206,7 @@
                     android:layout_height="wrap_content"
                     android:text="Trần Khánh Toàn"
                     android:textColor="@color/black"
+                    android:id="@+id/tv_profile_fullname"
                     android:textSize="17sp"
                     />
             </LinearLayout>
@@ -228,6 +234,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0969537055"
+                    android:id="@+id/tv_profile_phone"
                     android:textColor="@color/black"
                     android:textSize="17sp"
                     />
@@ -255,6 +262,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Name"
+                    android:id="@+id/tv_profile_gender"
                     android:textColor="@color/black"
                     android:textSize="17sp"
                     />
@@ -275,8 +283,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Logout"
+                    android:id="@+id/tv_profile_logout"
                     android:textSize="17sp"
                     android:textColor="#374089"
+                    android:fontFamily="@font/nunito_bold"
                     />
 
             </LinearLayout>

@@ -1,5 +1,6 @@
 package com.example.modelfashion.Interface;
 
+import com.example.modelfashion.Model.Brand;
 import com.example.modelfashion.Model.MHistory.BillModel;
 import com.example.modelfashion.Model.response.User.User;
 import com.example.modelfashion.Model.response.bill.Bill;
@@ -7,6 +8,7 @@ import com.example.modelfashion.Model.response.bill.BillDetail;
 import com.example.modelfashion.Model.response.my_product.CartProduct;
 import com.example.modelfashion.Model.response.my_product.MyProduct;
 import com.example.modelfashion.Model.response.my_product.Sizes;
+import com.example.modelfashion.Utility.Constants;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -35,7 +37,7 @@ public interface ApiRetrofit {
     OkHttpClient client = new OkHttpClient.Builder().connectTimeout(100, TimeUnit.SECONDS)
             .readTimeout(100,TimeUnit.SECONDS).build();
     Gson gson = new GsonBuilder().setLenient().create();
-    ApiRetrofit apiRetrofit = new Retrofit.Builder().baseUrl("http://192.168.1.14/")
+    ApiRetrofit apiRetrofit = new Retrofit.Builder().baseUrl("http://"+ Constants.KEY_IP +"/")
             .client(client)
             .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
@@ -100,6 +102,15 @@ public interface ApiRetrofit {
     @GET("FashionShop-phpServer/get_bill_detail_in_bill.php")
     Call<ArrayList<BillDetail>> GetBillDetailInBill(@Query("bill_id") String bill_id);
 
+    @GET("FashionShop-phpServer/get_all_products.php")
+    Call<ArrayList<MyProduct>> GetAllProduct();
+
+    @GET("FashionShop-phpServer/get_recent_clothes_type.php")
+    Call<ArrayList<String>> GetRecentType();
+
+    @GET("FashionShop-phpServer/get_6_random_brand.php")
+    Call<ArrayList<Brand>> Get6RdBrand();
+
     @FormUrlEncoded
     @POST("FashionShop-phpServer/delete_product_from_cart_by_size_id.php")
     Call<String> DeleteProductFromCart(@Field("user_id") String user_id, @Field("size_id") String size_id);
@@ -132,4 +143,5 @@ public interface ApiRetrofit {
     @FormUrlEncoded
     @POST("FashionShop-phpServer/login_with_google.php")
     Call<User> LoginWithGoogle(@Field("email") String email);
+
 }

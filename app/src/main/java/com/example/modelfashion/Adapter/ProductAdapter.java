@@ -1,6 +1,7 @@
 package com.example.modelfashion.Adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.example.modelfashion.Model.Product;
 import com.example.modelfashion.Model.response.my_product.MyProduct;
 import com.example.modelfashion.R;
+import com.example.modelfashion.Utility.Constants;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -51,8 +53,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
             onItemClick.imgAddToCartClick(i, arrProduct.get(i));
         });
         DecimalFormat formatter = new DecimalFormat("###,###,###");
-        String money_format = formatter.format(Integer.parseInt(arrProduct.get(i).getPrice()));
-        Glide.with(context).load(arrProduct.get(i).getPhotos().get(0)).placeholder(R.drawable.test_img2).into(viewHolder.img);
+        String money_format = formatter.format(Integer.parseInt(arrProduct.get(i).getPrice().split("\\.")[0]));
+        Log.e("load_img",arrProduct.get(i).getPhotos().get(0));
+        Glide.with(context).load(arrProduct.get(i).getPhotos().get(0).replace("localhost", Constants.KEY_IP)).into(viewHolder.img);
         viewHolder.tvProductName.setText(arrProduct.get(i).getProduct_name());
         viewHolder.tvPrice.setText(money_format+" VNĐ");
     }
