@@ -1,34 +1,17 @@
 package com.example.modelfashion.Model.response.my_product;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+
 public class Sizes {
-    @SerializedName("id")
-    @Expose
-    private String id;
-    @SerializedName("product_name")
-    @Expose
-    private String productName;
-    @SerializedName("size")
-    @Expose
+    private String size_id;
     private String size;
-    @SerializedName("quantity")
-    @Expose
-    private String quantity;
+    private String remain_product;
+    private String total_product;
 
-    public String getId() {
-        return id;
+    public String getSize_id() {
+        return size_id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setSize_id(String size_id) {
+        this.size_id = size_id;
     }
 
     public String getSize() {
@@ -38,20 +21,29 @@ public class Sizes {
     public void setSize(String size) {
         this.size = size;
     }
-
-    public String getQuantity() {
-        return quantity;
+    public String getRemain_product() {
+        return remain_product;
     }
 
-    public void setQuantity(String quantity) {
-        this.quantity = quantity;
+    public void setRemain_product(String remain_product) {
+        this.remain_product = remain_product;
+    }
+
+    public String getTotal_product() {
+        return total_product;
+    }
+
+    public void setTotal_product(String total_product) {
+        this.total_product = total_product;
     }
 
     @Override
     public String toString() {
         return "Sizes{" +
+                "size_id='" + size_id + '\'' +
                 "size='" + size + '\'' +
-                ", quantity='" + quantity + '\'' +
+                ", remain_product='" + remain_product + '\''+
+                ", total_product='" + total_product + '\''+
                 '}';
     }
 }

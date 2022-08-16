@@ -5,12 +5,6 @@
         android:icon="@drawable/ic_home"
         android:title="Trang Chủ"
         />
-
-    <item
-        android:id="@+id/main_item_category"
-        android:icon="@drawable/ic_category"
-        android:title="Thể Loại"/>
-
     <item
         android:id="@+id/main_item_cart"
         android:icon="@drawable/ic_cart"

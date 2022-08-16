@@ -15,6 +15,7 @@ public class MyProduct {
     private String discount_rate;
     private String location;
     private String material;
+    private String status;
     private ArrayList<Sizes> sizes;
     private ArrayList<String> photos;
 
@@ -114,6 +115,14 @@ public class MyProduct {
         this.material = material;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public ArrayList<Sizes> getSizes() {
         return sizes;
     }
@@ -133,7 +142,7 @@ public class MyProduct {
     public MyProduct() {
     }
 
-    public MyProduct(String id, String type, String brand, String product_name, String description, String price, String cost, String date_added, String rating, String discount_rate, String location, String material, ArrayList<Sizes> sizes, ArrayList<String> photos) {
+    public MyProduct(String id, String type, String brand, String product_name, String description, String price, String cost, String date_added, String rating, String discount_rate, String location, String material, String status, ArrayList<Sizes> sizes, ArrayList<String> photos) {
         this.id = id;
         this.type = type;
         this.brand = brand;
@@ -146,6 +155,7 @@ public class MyProduct {
         this.discount_rate = discount_rate;
         this.location = location;
         this.material = material;
+        this.status = status;
         this.sizes = sizes;
         this.photos = photos;
     }
@@ -165,6 +175,7 @@ public class MyProduct {
                 ", discount_rate='" + discount_rate + '\'' +
                 ", location='" + location + '\'' +
                 ", material='" + material + '\'' +
+                ", status='" + status + '\'' +
                 ", sizes=" + sizes +
                 ", photos=" + photos +
                 '}';

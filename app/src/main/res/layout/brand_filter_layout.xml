@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rv_nation"/>
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chọn tất cả"
+        android:id="@+id/cb_check_all"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_button_payment"
+        android:text="Đồng ý"
+        android:textColor="@color/white"
+        android:id="@+id/btn_confirm_nation_filter"
+        android:textSize="18sp"
+        android:fontFamily="@font/montserrat_bold"
+        android:textAllCaps="false"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"/>
+</LinearLayout>

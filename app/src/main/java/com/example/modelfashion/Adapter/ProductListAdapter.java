@@ -1,5 +1,6 @@
 package com.example.modelfashion.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,7 +41,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, @SuppressLint("RecyclerView") int i) {
         ArrayList<MyProduct> productsFiltered = new ArrayList<>();
         for(int j = 0; j < arrProduct.size(); j++){
             if(arrProduct.get(j).getType().equals(arrProductType.get(i))){
@@ -54,7 +55,12 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         viewHolder.tv_product_item.setText(arrProductType.get(i));
 
         viewHolder.recyclerView.addItemDecoration(new VerticalSpaceItemDecoration(20));
-
+        viewHolder.tv_xem_tat_ca.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onItemClick.seeAll(i, arrProductType.get(i));
+            }
+        });
         productAdapter.onItemClickListener(new ProductAdapter.OnItemClick() {
             @Override
             public void imgClick(int position, MyProduct product) {
@@ -62,7 +68,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
             }
 
             @Override
-            public void imgAddToCartClick(int position, MyProduct product) {
+            public void imgAddToFavoriteClick(int position, MyProduct product) {
                 onItemClick.imgAddToCartClick(position, product);
             }
         });
@@ -95,5 +101,6 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     public interface OnItemClickListener{
         void imgClick(int position, MyProduct product);
         void imgAddToCartClick(int position, MyProduct product);
+        void seeAll(int position, String type);
     }
 }

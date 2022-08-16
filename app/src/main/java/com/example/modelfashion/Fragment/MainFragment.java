@@ -177,6 +177,11 @@ public class MainFragment extends Fragment {
             public void imgAddToCartClick(int position, MyProduct product) {
                 // TODO add to cart
             }
+
+            @Override
+            public void seeAll(int position, String type) {
+
+            }
         });
     }
 

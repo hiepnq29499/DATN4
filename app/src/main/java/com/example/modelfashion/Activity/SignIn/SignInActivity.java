@@ -2,6 +2,7 @@ package com.example.modelfashion.Activity.SignIn;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.modelfashion.Activity.GetPasswordAct;
 import com.example.modelfashion.Activity.MainActivity;
 import com.example.modelfashion.Common.ProgressLoadingCommon;
 import com.example.modelfashion.Fragment.FragmentProfile;
@@ -199,7 +201,40 @@ public class SignInActivity extends AppCompatActivity {
 //        btn_back.setOnClickListener(v -> {
 //            onBackPressed();
 //        });
-//
+        tvGetPw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(SignInActivity.this);
+                builder.setCancelable(true);
+                View view1 = getLayoutInflater().inflate(R.layout.dialog_get_pw,null,false);
+                builder.setView(view1);
+                EditText edtUserName = view1.findViewById(R.id.edt_username_get_pw);
+                Button btnSendRequest = view1.findViewById(R.id.btn_send_request_pw);
+                btnSendRequest.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        ApiRetrofit.apiRetrofit.SendRequestGetPw(edtUserName.getText().toString()).enqueue(new Callback<String>() {
+                            @Override
+                            public void onResponse(Call<String> call, Response<String> response) {
+                                if(response.body().equalsIgnoreCase("ok")){
+                                    Intent intent = new Intent(SignInActivity.this, GetPasswordAct.class);
+                                    intent.putExtra("user_name",edtUserName.getText().toString());
+                                    startActivity(intent);
+                                }
+                                if(response.body().equalsIgnoreCase("fail")){
+                                    Toast.makeText(SignInActivity.this, "Tên đăng nhập không tồn tại", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<String> call, Throwable t) {
+                            }
+                        });
+                    }
+                });
+                builder.create().show();
+            }
+        });
         tvLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -250,7 +285,6 @@ public class SignInActivity extends AppCompatActivity {
                                     prefsEditor.putString(Constants.KEY_GET_USER, response.body().toString());
                                     prefsEditor.putBoolean(Constants.KEY_CHECK_LOGIN, true);
                                     prefsEditor.apply();
-
                                     Toast.makeText(SignInActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
 //                            onBackPressed();
                                     Intent intent = new Intent(SignInActivity.this, MainActivity.class);
@@ -264,6 +298,7 @@ public class SignInActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<User> call, Throwable t) {
+                        progressDialog.hide();
                         Log.e("DangNhap",t.toString());
                         Toast.makeText(SignInActivity.this, "Sai tài khoản hoặc mật khẩu", Toast.LENGTH_SHORT).show();
                     }

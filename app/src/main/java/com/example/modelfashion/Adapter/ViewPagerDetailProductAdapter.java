@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.modelfashion.Model.ItemSaleMain;
 import com.example.modelfashion.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -34,7 +35,8 @@ public class ViewPagerDetailProductAdapter extends RecyclerView.Adapter<ViewPage
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         String url = arrItem.get(position);
-        Glide.with(holder.img.getContext()).load(url).placeholder(R.drawable.test_img).into(holder.img);
+//        Picasso.get().load(url).into(holder.img);
+        Glide.with(holder.img.getContext()).load(url).into(holder.img);
     }
 
     @Override
@@ -44,10 +46,8 @@ public class ViewPagerDetailProductAdapter extends RecyclerView.Adapter<ViewPage
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView img;
-
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
             img = itemView.findViewById(R.id.img_product_detail_view_pager_item);
         }
     }

@@ -18,84 +18,25 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.8"
+        android:id="@+id/tv_add_delivery_address"
         android:text="+ Add New Address"
         android:gravity="center"/>
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="5"
-        android:background="#F5F5F5"/>
+        android:layout_weight="6.5"
+        android:id="@+id/rv_new_cart"
+        android:background="@color/black"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_weight="0.5"
         android:orientation="vertical"
-        android:weightSum="10">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2"
-            android:text="Price Detail"
-            android:fontFamily="@font/montserrat_bold"
-            android:textColor="@color/black"
-            android:layout_marginLeft="16dp"
-            android:gravity="center_vertical"
-            android:textSize="18sp"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="5.5"
-            android:gravity="center"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:orientation="vertical">
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Price (1 item)"
-                    android:gravity="center_vertical"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:textColor="@color/black"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:text="$2000"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:textColor="@color/black"
-                    />
-            </androidx.appcompat.widget.LinearLayoutCompat>
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Delivery Fee"
-                    android:gravity="center_vertical"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:textColor="@color/black"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:text="Free"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:textColor="@color/black"
-                    />
-            </androidx.appcompat.widget.LinearLayoutCompat>
-        </LinearLayout>
+        android:gravity="center"
+        >
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2.5"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
@@ -112,6 +53,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="right"
+                android:id="@+id/tv_total_new_cart"
                 android:text="$2000"
                 android:fontFamily="@font/montserrat_bold"
                 android:textColor="@color/black"
@@ -129,6 +71,8 @@
             android:layout_height="match_parent"
             android:background="@drawable/border_button_payment"
             android:text="Continue to Payment"
+            android:textColor="@color/white"
+            android:id="@+id/btn_payment_new_cart"
             android:textSize="18sp"
             android:fontFamily="@font/montserrat_bold"
             android:textAllCaps="false"

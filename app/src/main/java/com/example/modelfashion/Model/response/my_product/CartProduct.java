@@ -8,9 +8,9 @@ public class CartProduct {
     @SerializedName("user_id")
     @Expose
     private String userId;
-    @SerializedName("product_name")
+    @SerializedName("product_id")
     @Expose
-    private String productName;
+    private String productId;
     @SerializedName("size_id")
     @Expose
     private String sizeId;
@@ -34,12 +34,12 @@ public class CartProduct {
         this.userId = userId;
     }
 
-    public String getProductName() {
-        return productName;
+    public String getProductId() {
+        return productId;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 
     public String getSizeId() {

@@ -29,6 +29,7 @@ import com.example.modelfashion.Fragment.CartFragment;
 import com.example.modelfashion.Fragment.CategoryFragment;
 import com.example.modelfashion.Fragment.FragmentProfile;
 import com.example.modelfashion.Fragment.MainFragment;
+import com.example.modelfashion.Fragment.NewCartFragment;
 import com.example.modelfashion.Fragment.NewProductFragment;
 import com.example.modelfashion.Fragment.NewProfileFragment;
 import com.example.modelfashion.Model.response.User.User;
@@ -74,15 +75,18 @@ public class MainActivity extends AppCompatActivity {
                         replaceFragment(newProductFragment);
                         break;
                     case R.id.main_item_cart:
-                        CartFragment cartFragment = new CartFragment();
-                        cartFragment.setArguments(info);
-                        replaceFragment(cartFragment);
+//                        CartFragment cartFragment = new CartFragment();
+//                        cartFragment.setArguments(info);
+//                        replaceFragment(cartFragment);
+                        NewCartFragment newCartFragment = new NewCartFragment();
+                        newCartFragment.setArguments(info);
+                        replaceFragment(newCartFragment);
                         break;
-                    case R.id.main_item_category:
-                        CategoryFragment categoryFragment = new CategoryFragment();
-                        categoryFragment.setArguments(info);
-                        replaceFragment(categoryFragment);
-                        break;
+//                    case R.id.main_item_category:
+//                        CategoryFragment categoryFragment = new CategoryFragment();
+//                        categoryFragment.setArguments(info);
+//                        replaceFragment(categoryFragment);
+//                        break;
                     case R.id.main_item_profile:
 //                        FragmentProfile fragmentProfile = new FragmentProfile();
 //                        fragmentProfile.setArguments(info);

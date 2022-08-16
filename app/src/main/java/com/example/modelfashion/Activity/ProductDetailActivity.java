@@ -1,7 +1,6 @@
 package com.example.modelfashion.Activity;
 
 import static com.example.modelfashion.Utility.Constants.KEY_PRODUCT_ID;
-import static com.example.modelfashion.Utility.Constants.KEY_PRODUCT_NAME;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,16 +8,10 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -67,22 +60,21 @@ public class ProductDetailActivity extends AppCompatActivity {
         setContentView(R.layout.new_product_detail);
         Intent intent = getIntent();
         user_id = intent.getStringExtra("user_id");
-        productName = intent.getStringExtra(KEY_PRODUCT_NAME);
         productId = intent.getStringExtra(KEY_PRODUCT_ID);
         Log.e("t1", user_id + " ");
         // TODO use id to call detail product api
-        ApiRetrofit.apiRetrofit.GetProductsSize(productName).enqueue(new Callback<ArrayList<Sizes>>() {
-            @Override
-            public void onResponse(Call<ArrayList<Sizes>> call, Response<ArrayList<Sizes>> response) {
-                arr_size = response.body();
-                size_id = arr_size.get(0).getId();
-            }
-
-            @Override
-            public void onFailure(Call<ArrayList<Sizes>> call, Throwable t) {
-
-            }
-        });
+//        ApiRetrofit.apiRetrofit.GetProductsSize(productName).enqueue(new Callback<ArrayList<Sizes>>() {
+//            @Override
+//            public void onResponse(Call<ArrayList<Sizes>> call, Response<ArrayList<Sizes>> response) {
+//                arr_size = response.body();
+//                size_id = arr_size.get(0).getId();
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ArrayList<Sizes>> call, Throwable t) {
+//
+//            }
+//        });
         repository = new Repository(getApplicationContext());
 
 //        initView();
@@ -115,14 +107,14 @@ public class ProductDetailActivity extends AppCompatActivity {
         tv_product_category.setText("Loại sản phẩm: " + myProduct.getType());
 
         Glide.with(this).load(myProduct.getPhotos().get(0)).placeholder(R.drawable.test_img2).into(img_product);
-        if (Integer.parseInt(myProduct.getSizes().get(0).getQuantity()) == 0)
-            img_size_s.setVisibility(View.GONE);
-        if (Integer.parseInt(myProduct.getSizes().get(1).getQuantity()) == 0)
-            img_size_m.setVisibility(View.GONE);
-        if (Integer.parseInt(myProduct.getSizes().get(2).getQuantity()) == 0)
-            img_size_l.setVisibility(View.GONE);
-        if (Integer.parseInt(myProduct.getSizes().get(3).getQuantity()) == 0)
-            img_size_xl.setVisibility(View.GONE);
+//        if (Integer.parseInt(myProduct.getSizes().get(0).getQuantity()) == 0)
+//            img_size_s.setVisibility(View.GONE);
+//        if (Integer.parseInt(myProduct.getSizes().get(1).getQuantity()) == 0)
+//            img_size_m.setVisibility(View.GONE);
+//        if (Integer.parseInt(myProduct.getSizes().get(2).getQuantity()) == 0)
+//            img_size_l.setVisibility(View.GONE);
+//        if (Integer.parseInt(myProduct.getSizes().get(3).getQuantity()) == 0)
+//            img_size_xl.setVisibility(View.GONE);
     }
 
     private int currentCoverImage = 0;
@@ -156,22 +148,22 @@ public class ProductDetailActivity extends AppCompatActivity {
         loadImageUrl("https://cf.shopee.vn/file/7624d506af9460c8f4e8e5a80c30b514", img_product);
         img_size_s.setOnClickListener(view -> {
             // TODO SIZE S
-            size_id = arr_size.get(0).getId();
+            size_id = arr_size.get(0).getSize_id();
             checkSize(1);
         });
         img_size_m.setOnClickListener(view -> {
             // TODO SIZE M
-            size_id = arr_size.get(1).getId();
+            size_id = arr_size.get(1).getSize_id();
             checkSize(2);
         });
         img_size_l.setOnClickListener(view -> {
             // TODO SIZE L
-            size_id = arr_size.get(2).getId();
+            size_id = arr_size.get(2).getSize_id();
             checkSize(3);
         });
         img_size_xl.setOnClickListener(view -> {
             // TODO SIZE XL
-            size_id = arr_size.get(3).getId();
+            size_id = arr_size.get(3).getSize_id();
             checkSize(4);
         });
 

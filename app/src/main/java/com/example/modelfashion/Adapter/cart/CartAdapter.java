@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.bumptech.glide.Glide;
-import com.example.modelfashion.Model.Product;
 import com.example.modelfashion.Model.response.my_product.MyProduct;
 import com.example.modelfashion.Model.response.my_product.Sizes;
 import com.example.modelfashion.R;
@@ -64,7 +63,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHoder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHoder holder, @SuppressLint("RecyclerView") int position) {
-        AtomicInteger minteger= new AtomicInteger(Integer.parseInt(arrSize.get(position).getQuantity()));
+        AtomicInteger minteger= new AtomicInteger(Integer.parseInt(arrSize.get(position).getRemain_product()));
         DecimalFormat formatter = new DecimalFormat("###,###,###");
         String money_format = formatter.format(Integer.parseInt(productArrayList.get(position).getPrice()));
         holder.nameProduct.setText("Sản phẩm: "+productArrayList.get(position).getProduct_name());
@@ -74,19 +73,19 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHoder> {
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cartOnClick.OnClick(position, arrSize.get(position).getId());
+                cartOnClick.OnClick(position, arrSize.get(position).getSize_id());
             }
         });
         holder.btnIncrease.setOnClickListener(view -> {
             minteger.set(minteger.get() + 1);
                 holder.amount.setText(""+minteger);
-                cartOnClick.ChangeQuantity(arrSize.get(position).getId(), holder.amount.getText().toString(), holder.btnIncrease);
+                cartOnClick.ChangeQuantity(arrSize.get(position).getSize_id(), holder.amount.getText().toString(), holder.btnIncrease);
         });
         holder.btnDecrease.setOnClickListener(view -> {
             if(minteger.get() > 1){
                 minteger.set(minteger.get() - 1);
                 holder.amount.setText(""+minteger);
-                cartOnClick.ChangeQuantity(arrSize.get(position).getId(), holder.amount.getText().toString(), holder.btnDecrease);
+                cartOnClick.ChangeQuantity(arrSize.get(position).getSize_id(), holder.amount.getText().toString(), holder.btnDecrease);
             }
         });
         holder.amount.setText(""+minteger);

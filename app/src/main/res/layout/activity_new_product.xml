@@ -44,13 +44,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_vector"
-                    android:layout_marginEnd="22dp"
-                    />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_cart"
+                    android:id="@+id/img_fav_mainfm"
                     />
             </LinearLayout>
         </RelativeLayout>
@@ -69,6 +63,8 @@
              android:background="@color/white"
              android:paddingStart="20dp"
              android:drawablePadding="20dp"
+             android:id="@+id/edt_search"
+             android:inputType="textNoSuggestions"
              android:drawableStart="@drawable/ic_search"
              android:hint="Search Product"
              />
@@ -87,7 +83,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search_bar"
         app:layout_constraintVertical_bias="1.0">
-
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -188,6 +183,15 @@
                             android:id="@+id/brand_logo6"
                             android:src="@drawable/ic_bbr1" />
                     </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunito_variablefont_wght"
+                        android:paddingRight="10dp"
+                        android:text="Xem Tất Cả"
+                        android:textColor="@color/green_active"
+                        android:id="@+id/tv_see_all_brand"/>
+
                 </LinearLayout>
 
                 <View

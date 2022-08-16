@@ -8,13 +8,11 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.modelfashion.Model.Product;
 import com.example.modelfashion.Model.response.my_product.MyProduct;
 import com.example.modelfashion.R;
 import com.example.modelfashion.Utility.Constants;
@@ -50,14 +48,20 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         });
 
         viewHolder.imgAddToCart.setOnClickListener(view -> {
-            onItemClick.imgAddToCartClick(i, arrProduct.get(i));
+            onItemClick.imgAddToFavoriteClick(i, arrProduct.get(i));
         });
         DecimalFormat formatter = new DecimalFormat("###,###,###");
+        if(Float.parseFloat(arrProduct.get(i).getDiscount_rate())>0){
+            String money_format = formatter.format(Integer.parseInt(arrProduct.get(i).getPrice().split("\\.")[0])*(100-Float.parseFloat(arrProduct.get(i).getDiscount_rate()))/100);
+            viewHolder.tvPrice.setText(money_format+" VNĐ");
+        }else {
+            String money_format = formatter.format(Integer.parseInt(arrProduct.get(i).getPrice().split("\\.")[0]));
+            viewHolder.tvPrice.setText(money_format+" VNĐ");
+        }
         String money_format = formatter.format(Integer.parseInt(arrProduct.get(i).getPrice().split("\\.")[0]));
         Log.e("load_img",arrProduct.get(i).getPhotos().get(0));
         Glide.with(context).load(arrProduct.get(i).getPhotos().get(0).replace("localhost", Constants.KEY_IP)).into(viewHolder.img);
         viewHolder.tvProductName.setText(arrProduct.get(i).getProduct_name());
-        viewHolder.tvPrice.setText(money_format+" VNĐ");
     }
 
     @Override
@@ -85,8 +89,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         this.onItemClick = listener;
     }
 
-    interface OnItemClick {
+    public interface OnItemClick {
         void imgClick(int position, MyProduct product);
-        void imgAddToCartClick(int position, MyProduct product);
+        void imgAddToFavoriteClick(int position, MyProduct product);
     }
 }

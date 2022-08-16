@@ -1,7 +1,10 @@
 package com.example.modelfashion.Interface;
 
 import com.example.modelfashion.Model.Brand;
+import com.example.modelfashion.Model.DeliveryInfo;
 import com.example.modelfashion.Model.MHistory.BillModel;
+import com.example.modelfashion.Model.Product;
+import com.example.modelfashion.Model.response.Rating;
 import com.example.modelfashion.Model.response.User.User;
 import com.example.modelfashion.Model.response.bill.Bill;
 import com.example.modelfashion.Model.response.bill.BillDetail;
@@ -68,9 +71,19 @@ public interface ApiRetrofit {
     @POST("FashionShop-phpServer/insert_cart.php")
     Call<String> InsertCart(@Field("user_id") String user_id, @Field("size_id") String size_id,
                                 @Field("product_name") String product_name, @Field("quantity") String quantity);
+    @FormUrlEncoded
+    @POST("FashionShop-phpServer/insert_cart.php")
+    Call<String> InsertCart2(@Field("user_id") String user_id, @Field("size_id") String size_id,
+                            @Field("product_id") String product_id, @Field("quantity") String quantity);
 
     @GET("FashionShop-phpServer/get_user_cart.php")
     Call<ArrayList<CartProduct>> GetCartProduct(@Query("user_id") String user_id);
+
+    @GET("FashionShop-phpServer/get_product_in_cart.php")
+    Call<ArrayList<MyProduct>> GetProductInCart(@Query("user_id") String user_id);
+
+    @GET("FashionShop-phpServer/get_cart_info.php")
+    Call<ArrayList<CartProduct>> GetCart(@Query("user_id") String user_id);
 
     @GET("FashionShop-phpServer/get_product_by_name.php")
     Call<ArrayList<MyProduct>> GetProductByName(@Query("product_name") JSONArray product_name, @Query("user_id") String user_id);
@@ -111,10 +124,58 @@ public interface ApiRetrofit {
     @GET("FashionShop-phpServer/get_6_random_brand.php")
     Call<ArrayList<Brand>> Get6RdBrand();
 
+    @GET("FashionShop-phpServer/get_product_by_id.php")
+    Call<MyProduct> GetProductById(@Query("product_id") String product_id);
+
+    @GET("FashionShop-phpServer/get_product_by_type.php")
+    Call<ArrayList<MyProduct>> GetProductByType(@Query("product_type") String product_type);
+
+    @GET("FashionShop-phpServer/get_delivery_info.php")
+    Call<DeliveryInfo> GetDeliveryInfo(@Query("user_id") String user_id);
+
+    @GET("FashionShop-phpServer/get_bill_by_user_id.php")
+    Call<ArrayList<Bill>> GetBillByUserId(@Query("user_id") String user_id);
+
+    @GET("FashionShop-phpServer/get_rating_by_product.php")
+    Call<ArrayList<Rating>> GetProductRating(@Query("product_id") String product_id);
+
+    @GET("FashionShop-phpServer/bill_filter.php")
+    Call<ArrayList<Bill>> GetBillFilted(@Query("month") String month, @Query("year") String year, @Query("status") String status,
+                                        @Query("order") String order, @Query("user_id") String user_id);
+    @GET("FashionShop-phpServer/get_all_brand.php")
+    Call<ArrayList<Brand>> GetAllBrand();
+
+    @GET("FashionShop-phpServer/get_brands_location.php")
+    Call<ArrayList<String>> GetBrandsLocation();
+
+    @GET("FashionShop-phpServer/get_brands_by_location.php")
+    Call<ArrayList<Brand>> GetBrandByLocation(@Query("locations") JSONArray arr_location);
+
+    @GET("FashionShop-phpServer/get_brand_by_id.php")
+    Call<Brand> GetBrandById(@Query("brand_id") String brand_id);
+
+    @GET("FashionShop-phpServer/get_brands_product.php")
+    Call<ArrayList<MyProduct>> GetBrandsProduct(@Query("brand_id") String brand_id);
+
+    @GET("FashionShop-phpServer/get_brands_product_by_filter1.php")
+    Call<ArrayList<MyProduct>> GetFilterBrandsProduct(@Query("brand_id") String brand_id, @Query("type") String type,
+                                                      @Query("value") String value);
+    @GET("FashionShop-phpServer/get_fav_product_by_user.php")
+    Call<ArrayList<MyProduct>> GetFavProduct(@Query("user_id") String user_id);
+
+    @GET("FashionShop-phpServer/get_fav_product_by_filter.php")
+    Call<ArrayList<MyProduct>> GetFilterFavProduct(@Query("user_id") String user_id, @Query("type") String type,
+                                                   @Query("value") String value);
+    @GET("FashionShop-phpServer/get_product_by_filter1.php")
+    Call<ArrayList<MyProduct>> GetFilterProduct(@Query("brand_id") String brand_id, @Query("type") String type,
+                                                @Query("value") String value, @Query("price_range") String price_range);
+    @GET("FashionShop-phpServer/search_product_by_name.php")
+    Call<ArrayList<MyProduct>> GetSearchProduct(@Query("search_text") String search_text);
+
+
     @FormUrlEncoded
     @POST("FashionShop-phpServer/delete_product_from_cart_by_size_id.php")
     Call<String> DeleteProductFromCart(@Field("user_id") String user_id, @Field("size_id") String size_id);
-
 
     @FormUrlEncoded
     @POST("FashionShop-phpServer/update_avatar_user.php")
@@ -125,11 +186,11 @@ public interface ApiRetrofit {
     Call<String> ChangeCartQuantity(@Field("user_id") String user_id, @Field("quantity") String quantity, @Field("size_id") String size_id);
 
     @FormUrlEncoded
-    @POST("FashionShop-phpServer/insert_fcm_token.php")
+    @POST("FashionShop-phpServer/Web/insert_fcm_token.php")
     Call<String> InsertFcmToken(@Field("user_id") String user_id, @Field("token") String token);
 
     @FormUrlEncoded
-    @POST("FashionShop-phpServer/delete_fcm_token.php")
+    @POST("FashionShop-phpServer/Web/delete_fcm_token.php")
     Call<String> DeleteFcmToken(@Field("user_id") String user_id, @Field("token") String token);
 
     @FormUrlEncoded
@@ -144,4 +205,53 @@ public interface ApiRetrofit {
     @POST("FashionShop-phpServer/login_with_google.php")
     Call<User> LoginWithGoogle(@Field("email") String email);
 
+    @FormUrlEncoded
+    @POST("FashionShop-phpServer/save_delivery_info.php")
+    Call<String> SaveDeliveryInfo(@Field("user_id") String user_id, @Field("receiver_name") String receiver_name,
+                                  @Field("street_address") String street_address, @Field("city") String city, @Field("contact") String contact);
+
+    @FormUrlEncoded
+    @POST("FashionShop-phpServer/insert_bill.php")
+    Call<String> InsertBill2(@Field("user_id") String user_id, @Field("receiver_name") String receiver_name, @Field("street_address") String street,
+                             @Field("city") String city, @Field("contact") String contact, @Field("amount") String amount);
+    @FormUrlEncoded
+    @POST("FashionShop-phpServer/insert_bill_detail.php")
+    Call<String> InsertBillDetail2(@Field("size_id") String size_id, @Field("bill_id") String bill_id, @Field("product_id") String product_id,
+                                   @Field("quantity") String quantity, @Field("cart_id") String cart_id, @Field("discount_rate") String discount_rate);
+    @FormUrlEncoded
+    @POST("FashionShop-phpServer/remove_cart_item.php")
+    Call<String> RemoveCartItem2(@Field("cart_id") String cart_id);
+
+    @FormUrlEncoded
+    @POST("FashionShop-phpServer/update_rating.php")
+    Call<String> UpdateRating(@Field("user_id") String user_id, @Field("product_id") String product_id, @Field("score") String score,
+                              @Field("comment") String comment);
+
+    @FormUrlEncoded
+    @POST("FashionShop-phpServer/insert_product_to_favorite.php")
+    Call<String> InsertFavorite(@Field("user_id") String user_id, @Field("product_id") String product_id);
+
+    @FormUrlEncoded
+    @POST("FashionShop-phpServer/send_request_get_pw.php")
+    Call<String> SendRequestGetPw(@Field("user_name") String user_name);
+
+    @FormUrlEncoded
+    @POST("FashionShop-phpServer/update_new_password.php")
+    Call<String> UpdateNewPw(@Field("confirm_code") String confirm_code, @Field("new_pw") String new_pw, @Field("user_name") String user_name);
+
+    @FormUrlEncoded
+    @POST("FashionShop-phpServer/update_cancel_bill.php")
+    Call<String> UpdateCancelBill(@Field("bill_id") String bill_id);
+
+    @FormUrlEncoded
+    @POST("FashionShop-phpServer/change_user_full_name.php")
+    Call<String> ChangeFullname(@Field("full_name") String full_name, @Field("user_id") String user_id);
+
+    @FormUrlEncoded
+    @POST("FashionShop-phpServer/change_user_phone.php")
+    Call<String> ChangePhone(@Field("phone") String phone, @Field("user_id") String user_id);
+
+    @FormUrlEncoded
+    @POST("FashionShop-phpServer/change_user_password.php")
+    Call<String> ChangeUserPassword(@Field("password") String password,@Field("new_password") String new_password, @Field("user_id") String user_id);
 }

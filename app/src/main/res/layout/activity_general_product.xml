@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    android:orientation="vertical"
+    tools:context=".Fragment.MainFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:id="@+id/search_bar"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="#374089"
+            android:orientation="vertical"
+            tools:ignore="MissingConstraints">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="44dp"
+                android:weightSum="10"
+                android:orientation="horizontal"
+                tools:ignore="MissingConstraints">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="4"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/nunito_bold"
+                    android:layout_height="wrap_content"
+                    android:text="Chọn nhãn hiệu"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="4"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/nunito_bold"
+                    android:layout_height="wrap_content"
+                    android:text="Chọn khoảng giá"/>
+            </LinearLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="14dp"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/spn_fill_brand_general"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="4dp"
+
+                    android:backgroundTint="@color/white" />
+
+                <ImageView
+                    android:id="@+id/img_fav_general"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/ic_vector" />
+
+                <Spinner
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/spn_fill_price_general"
+                    android:layout_toStartOf="@+id/img_fav_general"
+                    android:layout_toEndOf="@+id/spn_fill_brand_general"
+                    android:backgroundTint="@color/white" />
+            </RelativeLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/ll_fill_price_general">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:text="Giá trị tăng dần"
+                android:id="@+id/tv_fill_price_general"
+                android:fontFamily="@font/montserrat_bold"
+                android:textColor="@color/black"
+                android:layout_marginLeft="4dp"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_sort_increase"
+                android:id="@+id/img_fill_price_general"/>
+        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_gravity="center"
+            android:id="@+id/rv_general_product"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="#F4F4F6"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="2"
+            tools:listitem="@layout/new_product_item_layout" />
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@drawable/border_button_fb"
+    android:layout_marginBottom="5dp"
+    android:weightSum="10">
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="68dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_weight="6">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_bill_id"
+            android:text="Đơn hàng: "
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/montserrat_bold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ngày tạo: "
+            android:textSize="14sp"
+            android:id="@+id/tv_date_created"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="@color/black"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tổng: "
+            android:id="@+id/tv_bill_total"
+            android:textSize="14sp"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="68dp"
+        android:layout_weight="4"
+        android:orientation="vertical"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chờ duyệt"
+            android:id="@+id/tv_status_order"
+            android:layout_gravity="center_horizontal"
+            android:paddingVertical="4dp"
+            android:paddingHorizontal="20dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/montserrat_bold"
+            android:background="@drawable/border_button_payment"/>
+    </LinearLayout>
+</LinearLayout>

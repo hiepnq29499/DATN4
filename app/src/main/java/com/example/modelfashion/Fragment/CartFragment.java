@@ -5,7 +5,6 @@ import android.os.Bundle;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,12 +17,10 @@ import android.widget.Toast;
 import com.example.modelfashion.Activity.MainActivity;
 import com.example.modelfashion.Adapter.cart.CartAdapter;
 import com.example.modelfashion.Interface.ApiRetrofit;
-import com.example.modelfashion.Model.Product;
 import com.example.modelfashion.Model.response.my_product.CartProduct;
 import com.example.modelfashion.Model.response.my_product.MyProduct;
 import com.example.modelfashion.Model.response.my_product.Sizes;
 import com.example.modelfashion.R;
-import com.google.android.gms.common.api.Api;
 import com.google.gson.Gson;
 import org.json.JSONArray;
 import java.text.DecimalFormat;
@@ -87,7 +84,7 @@ public class CartFragment extends Fragment {
             public void onResponse(Call<ArrayList<CartProduct>> call, Response<ArrayList<CartProduct>> response) {
                 arrCart = response.body();
                 for (int i = 0; i < arrCart.size(); i++) {
-                    arr_product_name.add(arrCart.get(i).getProductName());
+                    arr_product_name.add(arrCart.get(i).getProductId());
                     arr_size_id.add(arrCart.get(i).getSizeId());
                 }
                 json_product_name = new JSONArray(arr_product_name);

@@ -88,13 +88,13 @@ public class FragmentProfile extends Fragment {
         loadDetails();
         setListener();
 //        btn_logout.setEnabled(false);
-//        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
-//            @Override
-//            public void onComplete(@NonNull Task<String> task) {
-//                token = task.getResult();
-//                btn_logout.setEnabled(true);
-//            }
-//        });
+        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
+            @Override
+            public void onComplete(@NonNull Task<String> task) {
+                token = task.getResult();
+                btn_logout.setEnabled(true);
+            }
+        });
         return view;
     }
 
