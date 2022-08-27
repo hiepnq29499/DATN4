@@ -1,13 +1,14 @@
 package com.example.modelfashion.Fragment;
 
+import static android.content.Context.MODE_MULTI_PROCESS;
+
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,16 +21,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager2.widget.ViewPager2;
 
-import com.bumptech.glide.Glide;
 import com.example.modelfashion.Activity.MainActivity;
 import com.example.modelfashion.Activity.SignIn.SignInActivity;
 import com.example.modelfashion.Activity.SignIn.SignUpActivity;
 import com.example.modelfashion.Activity.TransactionsAct;
-import com.example.modelfashion.Adapter.VpSaleMainFmAdapter;
 import com.example.modelfashion.Interface.ApiRetrofit;
-import com.example.modelfashion.Model.ItemSaleMain;
 import com.example.modelfashion.Model.response.User.User;
 import com.example.modelfashion.R;
 import com.example.modelfashion.Utility.Constants;
@@ -42,12 +39,8 @@ import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.Set;
+import java.util.regex.Pattern;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-import io.reactivex.disposables.CompositeDisposable;
-import me.relex.circleindicator.CircleIndicator3;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -95,7 +88,7 @@ public class NewProfileFragment extends Fragment {
     }
 
     private void LoadDetail(){
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Constants.KEY_SAVE_USER, Context.MODE_MULTI_PROCESS);
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Constants.KEY_SAVE_USER, MODE_MULTI_PROCESS);
         isLogin = sharedPreferences.getBoolean(Constants.KEY_CHECK_LOGIN, false);
         if (isLogin == false) {
             User user = new User("", "", "", "", "", "", "");
@@ -122,12 +115,16 @@ public class NewProfileFragment extends Fragment {
                 SharedPreferences sharedPreferences2 = getActivity().getSharedPreferences(Constants.KEY_FULL_NAME,Context.MODE_PRIVATE);
                 try {
                     JSONObject obj = new JSONObject(userData);
+                    if(obj.getString(Constants.KEY_ACCOUNT_TYPE).equals("google")){
+                        tvChangePw.setVisibility(View.INVISIBLE);
+                    }else {
+                        tvChangePw.setVisibility(View.VISIBLE);
+                    }
                     tvProfileName1.setVisibility(View.VISIBLE);
                     tvProfileName2.setVisibility(View.VISIBLE);
                     tvProfileEmail.setVisibility(View.VISIBLE);
                     tvProfilePhone.setVisibility(View.VISIBLE);
                     tvProfileGender.setVisibility(View.VISIBLE);
-                    tvChangePw.setVisibility(View.VISIBLE);
                     tvChangePhone.setVisibility(View.VISIBLE);
                     tvChangeFullName.setVisibility(View.VISIBLE);
                     tvProfileLogin.setVisibility(View.GONE);
@@ -136,9 +133,9 @@ public class NewProfileFragment extends Fragment {
                     btnTrans.setVisibility(View.VISIBLE);
                     tvProfileName1.setText(obj.getString(Constants.KEY_TAI_KHOAN));
                     tvProfileName2.setText(obj.getString(Constants.KEY_TAI_KHOAN));
-                    tvProfileFullname.setText(sharedPreferences2.getString(Constants.KEY_FULL_NAME,""));
+                    tvProfileFullname.setText(obj.getString(Constants.KEY_FULL_NAME));
                     tvProfileEmail.setText(obj.getString(Constants.KEY_EMAIL));
-                    tvProfilePhone.setText(sharedPreferences1.getString(Constants.KEY_PHONE,""));
+                    tvProfilePhone.setText(obj.getString(Constants.KEY_PHONE));
                     tvProfileGender.setText(obj.getString(Constants.KEY_SEX));
                     Log.e("sharepref",obj.getString(Constants.KEY_FULL_NAME));
                     Log.d("My App", obj.toString()+obj.get(Constants.KEY_AVARTAR));
@@ -182,8 +179,8 @@ public class NewProfileFragment extends Fragment {
                 btnConfirmPw.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if(edtNewPw.getText().toString().length()<8){
-                            Toast.makeText(getContext(), "Mật khẩu ít nhất 8 kí tự", Toast.LENGTH_SHORT).show();
+                        if(edtNewPw.getText().toString().length()<8 || edtNewPw.getText().toString().length()>16 ){
+                            Toast.makeText(getContext(), "Mật khẩu phải có 8-16 kí tự", Toast.LENGTH_SHORT).show();
                         }else if(!edtNewPw.getText().toString().equals(edtRePw.getText().toString())){
                             Toast.makeText(getContext(), "Mật khẩu mới chưa trùng khớp", Toast.LENGTH_SHORT).show();
                         }else {
@@ -195,6 +192,7 @@ public class NewProfileFragment extends Fragment {
                                     }else if(response.body().equals("fail")) {
                                         Toast.makeText(getContext(), "Mật khẩu cũ chưa chính xác", Toast.LENGTH_SHORT).show();
                                     }
+
                                 }
 
                                 @Override
@@ -211,6 +209,7 @@ public class NewProfileFragment extends Fragment {
         tvChangePhone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Pattern special = Pattern.compile("[!#$%&*^()_+=|<>?{}\\[\\]~-]");
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setCancelable(true);
                 View view1 = getLayoutInflater().inflate(R.layout.change_phone_layout,null,false);
@@ -222,24 +221,30 @@ public class NewProfileFragment extends Fragment {
                     public void onClick(View view) {
                         if(edtNewPhone.getText().toString().isEmpty()){
                             Toast.makeText(getContext(), "Không để trống phần này", Toast.LENGTH_SHORT).show();
-                        }else {
-                            ApiRetrofit.apiRetrofit.ChangePhone(edtNewPhone.getText().toString(),userId).enqueue(new Callback<String>() {
+                        }else if(special.matcher(edtNewPhone.getText().toString()).find() || edtNewPhone.getText().toString().contains("N")){
+                            Toast.makeText(getContext(), "Số dt không sử dụng kí tự đặc biệt", Toast.LENGTH_SHORT).show();
+                        }else if(edtNewPhone.getText().toString().length()!=10){
+                            Toast.makeText(getContext(), "Số điện thoại chỉ gồm 10 chữ số", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            ApiRetrofit.apiRetrofit.ChangePhone(edtNewPhone.getText().toString(),userId).enqueue(new Callback<User>() {
                                 @Override
-                                public void onResponse(Call<String> call, Response<String> response) {
-                                    if(response.body().equals("ok")){
-                                        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Constants.KEY_PHONE,Context.MODE_MULTI_PROCESS);
+                                public void onResponse(Call<User> call, Response<User> response) {
+                                        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Constants.KEY_PHONE, MODE_MULTI_PROCESS);
                                         SharedPreferences.Editor prefsEditor = sharedPreferences.edit();
                                         prefsEditor.putString(Constants.KEY_PHONE,edtNewPhone.getText().toString());
                                         prefsEditor.commit();
                                         tvProfilePhone.setText(edtNewPhone.getText().toString());
                                         Toast.makeText(getContext(), "Thay đổi thành công", Toast.LENGTH_SHORT).show();
-                                    }else {
-                                        Toast.makeText(getContext(), response.body(), Toast.LENGTH_SHORT).show();
-                                    }
+                                        SharedPreferences sharedPreferences1 = getActivity().getSharedPreferences(Constants.KEY_SAVE_USER,MODE_MULTI_PROCESS);
+                                        SharedPreferences.Editor prefsEditor1 = sharedPreferences1.edit();
+                                        prefsEditor1.putString(Constants.KEY_GET_USER, response.body().toString());
+                                        prefsEditor1.putBoolean(Constants.KEY_CHECK_LOGIN, true);
+                                        prefsEditor1.apply();
                                 }
 
                                 @Override
-                                public void onFailure(Call<String> call, Throwable t) {
+                                public void onFailure(Call<User> call, Throwable t) {
 
                                 }
                             });
@@ -264,23 +269,24 @@ public class NewProfileFragment extends Fragment {
                         if(edtNewFullname.getText().toString().isEmpty()){
                             Toast.makeText(getContext(), "Không để trống phần này", Toast.LENGTH_SHORT).show();
                         }else {
-                            ApiRetrofit.apiRetrofit.ChangeFullname(edtNewFullname.getText().toString(),userId).enqueue(new Callback<String>() {
+                            ApiRetrofit.apiRetrofit.ChangeFullname(edtNewFullname.getText().toString(),userId).enqueue(new Callback<User>() {
                                 @Override
-                                public void onResponse(Call<String> call, Response<String> response) {
-                                    if(response.body().equals("ok")){
+                                public void onResponse(Call<User> call, Response<User> response) {
                                         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Constants.KEY_FULL_NAME,Context.MODE_PRIVATE);
                                         SharedPreferences.Editor prefsEditor = sharedPreferences.edit();
                                         prefsEditor.putString(Constants.KEY_FULL_NAME,edtNewFullname.getText().toString());
                                         prefsEditor.commit();
                                         tvProfileFullname.setText(edtNewFullname.getText().toString());
                                         Toast.makeText(getContext(), "Thay đổi thành công", Toast.LENGTH_SHORT).show();
-                                    }else {
-                                        Toast.makeText(getContext(), response.body(), Toast.LENGTH_SHORT).show();
-                                    }
+                                        SharedPreferences sharedPreferences1 = getActivity().getSharedPreferences(Constants.KEY_SAVE_USER,MODE_MULTI_PROCESS);
+                                        SharedPreferences.Editor prefsEditor1 = sharedPreferences1.edit();
+                                        prefsEditor1.putString(Constants.KEY_GET_USER, response.body().toString());
+                                        prefsEditor1.putBoolean(Constants.KEY_CHECK_LOGIN, true);
+                                        prefsEditor1.apply();
                                 }
 
                                 @Override
-                                public void onFailure(Call<String> call, Throwable t) {
+                                public void onFailure(Call<User> call, Throwable t) {
 
                                 }
                             });
@@ -337,7 +343,7 @@ public class NewProfileFragment extends Fragment {
                     }
                 });
                 //progressLoadingCommon.showProgressLoading(getActivity());
-                SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Constants.KEY_SAVE_USER, Context.MODE_MULTI_PROCESS);
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Constants.KEY_SAVE_USER, MODE_MULTI_PROCESS);
                 sharedPreferences.edit().remove(Constants.KEY_GET_USER).commit();
                 SharedPreferences.Editor prefsEditor = sharedPreferences.edit();
                 prefsEditor.putBoolean(Constants.KEY_CHECK_LOGIN, false);

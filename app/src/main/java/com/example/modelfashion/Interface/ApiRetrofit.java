@@ -245,13 +245,22 @@ public interface ApiRetrofit {
 
     @FormUrlEncoded
     @POST("FashionShop-phpServer/change_user_full_name.php")
-    Call<String> ChangeFullname(@Field("full_name") String full_name, @Field("user_id") String user_id);
+    Call<User> ChangeFullname(@Field("full_name") String full_name, @Field("user_id") String user_id);
 
     @FormUrlEncoded
     @POST("FashionShop-phpServer/change_user_phone.php")
-    Call<String> ChangePhone(@Field("phone") String phone, @Field("user_id") String user_id);
+    Call<User> ChangePhone(@Field("phone") String phone, @Field("user_id") String user_id);
 
     @FormUrlEncoded
     @POST("FashionShop-phpServer/change_user_password.php")
     Call<String> ChangeUserPassword(@Field("password") String password,@Field("new_password") String new_password, @Field("user_id") String user_id);
+
+    @FormUrlEncoded
+    @POST("FashionShop-phpServer/remove_user_favorite.php")
+    Call<String> RemoveUserFavorite(@Field("user_id") String user_id, @Field("product_id") String product_id);
+
+    @FormUrlEncoded
+    @POST("FashionShop-phpServer/insert_user.php")
+    Call<String> InsertUser(@Field("taikhoan") String taikhoan, @Field("matkhau") String matkhau, @Field("email") String email, @Field("account_type") String account_type);
+
 }

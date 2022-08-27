@@ -200,10 +200,11 @@ public class SignUpActivity extends AppCompatActivity {
         ProgressDialog progressDialog = new ProgressDialog(SignUpActivity.this);
         progressDialog.setMessage("Pending");
         progressDialog.show();
-        apiInterface.insertUser(edtName.getText().toString(),edtPw.getText().toString(),edtEmail.getText().toString(),account_type).enqueue(new Callback<String>() {
+        ApiRetrofit.apiRetrofit.InsertUser(edtName.getText().toString(),edtPw.getText().toString(),edtEmail.getText().toString(),account_type).enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 progressDialog.hide();
+                Log.e("insert_user",response.body());
                 if(response.body().trim().equalsIgnoreCase("Success")){
                     Toast.makeText(SignUpActivity.this, "Đăng kí thành công", Toast.LENGTH_SHORT).show();
                     Log.e("insert_user",response.body());
@@ -233,15 +234,18 @@ public class SignUpActivity extends AppCompatActivity {
             Toast.makeText(SignUpActivity.this, "Không để trống", Toast.LENGTH_SHORT).show();
             return false;
         }
-
+        if(edtName.getText().toString().length() < 8 || edtName.getText().toString().length()>16){
+            Toast.makeText(SignUpActivity.this, "Tên đăng nhập chỉ gồm 8-16 kí tự", Toast.LENGTH_SHORT).show();
+            return false;
+        }
 
         if (special.matcher(edtName.getText().toString()).find() || special.matcher(edtEmail.getText().toString()).find()) {
             Toast.makeText(SignUpActivity.this, "Không được viết kí tự đặc biệt", Toast.LENGTH_SHORT).show();
             return false;
         }
 
-        if (edtPw.getText().toString().length() < 8) {
-            Toast.makeText(SignUpActivity.this, "Mật khẩu ít nhất 8 kí tự", Toast.LENGTH_SHORT).show();
+        if (edtPw.getText().toString().length() < 8 || edtPw.getText().toString().length()>16) {
+            Toast.makeText(SignUpActivity.this, "Mật khẩu chỉ gồm 8-16 kí tự", Toast.LENGTH_SHORT).show();
             return false;
         }
 

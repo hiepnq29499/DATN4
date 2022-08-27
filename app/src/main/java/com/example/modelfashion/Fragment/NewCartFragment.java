@@ -60,7 +60,7 @@ public class NewCartFragment extends Fragment {
     private String amount = "10000";
     private String fee = "0";
     int environment = 0;//developer default
-    private String merchantName = "CÔNG TY CỔ PHẦN GIẢI PHÁP CÔNG NGHỆ UNIKOM";
+    private String merchantName = "FREE STYLE MEN";
     private String merchantCode = "MOMOJDFR20220731";
     private String merchantNameLabel = "BacNguyen";
     private String description = "Mua Quan Ao";

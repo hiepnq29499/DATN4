@@ -53,7 +53,6 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false);
         viewHolder.recyclerView.setLayoutManager(linearLayoutManager);
         viewHolder.tv_product_item.setText(arrProductType.get(i));
-
         viewHolder.recyclerView.addItemDecoration(new VerticalSpaceItemDecoration(20));
         viewHolder.tv_xem_tat_ca.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,6 +69,11 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
             @Override
             public void imgAddToFavoriteClick(int position, MyProduct product) {
                 onItemClick.imgAddToCartClick(position, product);
+            }
+
+            @Override
+            public void imgRemoveFavorite(int position, MyProduct product) {
+
             }
         });
     }

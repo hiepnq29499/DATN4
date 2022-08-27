@@ -8,9 +8,9 @@
     <string name="them_vao_gio_hang">Thêm vào giỏ hàng</string>
     <string name="hint_search">Tìm Kiếm Sản Phẩm</string>
     <string name="note"><b>Lưu ý:</b><i> Nếu quý khách có nhu cầu hủy đơn hàng vui lòng liên hệ với shop để được hỗ trợ.\nXin chân thành cảm ơn!</i> </string>
-    <string name="hotline"><i>0369355563</i></string>
-    <string name="email"><i>khiemnxph10098@gmail.com</i></string>
-    <string name="zalo"><i>0369355563</i></string>
+    <string name="hotline"><i></i></string>
+    <string name="email"><i></i></string>
+    <string name="zalo"><i></i></string>
     <string name="pagename">Fanpage : <i>Fashion Shop</i></string>
-    <string name="linkpage">https://www.facebook.com/Kinshopam-106170628382799</string>
+    <string name="linkpage"></string>
 </resources>

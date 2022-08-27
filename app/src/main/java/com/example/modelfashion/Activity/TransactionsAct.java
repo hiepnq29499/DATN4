@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -69,14 +70,19 @@ public class TransactionsAct extends AppCompatActivity {
         SetData();
     }
     private void SetData(){
+        ProgressDialog progressDialog = new ProgressDialog(TransactionsAct.this);
+        progressDialog.setMessage("Đang tải hóa đơn");
+        progressDialog.show();
         ApiRetrofit.apiRetrofit.GetBillByUserId(user_id).enqueue(new Callback<ArrayList<Bill>>() {
             @Override
             public void onResponse(Call<ArrayList<Bill>> call, Response<ArrayList<Bill>> response) {
+                progressDialog.hide();
                 arr_bill = response.body();
                 orderHistoryAdapter = new OrderHistoryAdapter(TransactionsAct.this,arr_bill);
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(TransactionsAct.this,LinearLayoutManager.VERTICAL,false);
                 rv_order.setLayoutManager(linearLayoutManager);
                 rv_order.setAdapter(orderHistoryAdapter);
+                SetListener();
                 orderHistoryAdapter.OnItemClickListener(new OrderHistoryAdapter.OnClickItemListener() {
                     @Override
                     public void OnViewClick(int position) {
@@ -94,7 +100,7 @@ public class TransactionsAct extends AppCompatActivity {
 
             }
         });
-        SetListener();
+
     }
     private void SetListener(){
         ll_fill_price.setOnClickListener(new View.OnClickListener() {
@@ -153,9 +159,13 @@ public class TransactionsAct extends AppCompatActivity {
         });
     }
     private void BillFilter(String month, String year, String status, String orderby){
+                ProgressDialog progressDialog = new ProgressDialog(TransactionsAct.this);
+                progressDialog.setMessage("Đang tải hóa đơn");
+                progressDialog.show();
             ApiRetrofit.apiRetrofit.GetBillFilted(month,year,status,orderby,user_id).enqueue(new Callback<ArrayList<Bill>>() {
                 @Override
                 public void onResponse(Call<ArrayList<Bill>> call, Response<ArrayList<Bill>> response) {
+                    progressDialog.hide();
                     arr_bill.removeAll(arr_bill);
                     arr_bill.addAll(response.body());
                     orderHistoryAdapter.notifyDataSetChanged();

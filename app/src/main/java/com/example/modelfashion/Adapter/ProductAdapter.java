@@ -1,5 +1,6 @@
 package com.example.modelfashion.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -41,12 +42,18 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, @SuppressLint("RecyclerView") int i) {
 
         viewHolder.img.setOnClickListener(view -> {
             onItemClick.imgClick(i, arrProduct.get(i));
         });
-
+        viewHolder.img.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                onItemClick.imgRemoveFavorite(i,arrProduct.get(i));
+                return false;
+            }
+        });
         viewHolder.imgAddToCart.setOnClickListener(view -> {
             onItemClick.imgAddToFavoriteClick(i, arrProduct.get(i));
         });
@@ -92,5 +99,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     public interface OnItemClick {
         void imgClick(int position, MyProduct product);
         void imgAddToFavoriteClick(int position, MyProduct product);
+        void imgRemoveFavorite(int position, MyProduct product);
     }
 }

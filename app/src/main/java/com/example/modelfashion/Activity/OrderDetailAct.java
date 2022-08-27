@@ -126,6 +126,8 @@ public class OrderDetailAct extends AppCompatActivity {
                     public void onResponse(Call<String> call, Response<String> response) {
                         if(response.body().equals("ok")){
                             Toast.makeText(OrderDetailAct.this, "Đơn hàng của bạn đang được chờ hủy", Toast.LENGTH_SHORT).show();
+                        }else {
+                            Toast.makeText(OrderDetailAct.this, "Đơn hàng của bạn hiện không thể hủy", Toast.LENGTH_SHORT).show();
                         }
                     }
 

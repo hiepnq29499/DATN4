@@ -149,6 +149,11 @@ public class BrandsProductAct extends AppCompatActivity {
                             AddToFavorite(product.getId());
                         }
                     }
+
+                    @Override
+                    public void imgRemoveFavorite(int position, MyProduct product) {
+
+                    }
                 });
             }
 

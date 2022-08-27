@@ -25,6 +25,7 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.bumptech.glide.Glide;
@@ -64,6 +65,7 @@ public class NewProductFragment extends Fragment {
     private TextView tvSeeBrand;
     private ImageView imgFav;
     private EditText edtSearch;
+    private SwipeRefreshLayout refreshLayout;
     ArrayList<MyProduct> arrSearchProduct = new ArrayList<>();
     Timer timer;
     private ImageView imgBrand1, imgBrand2, imgBrand3, imgBrand4, imgBrand5, imgBrand6;
@@ -97,14 +99,15 @@ public class NewProductFragment extends Fragment {
         tvSeeBrand = view.findViewById(R.id.tv_see_all_brand);
         edtSearch = view.findViewById(R.id.edt_search);
         imgFav = view.findViewById(R.id.img_fav_mainfm);
+        refreshLayout = view.findViewById(R.id.refresh_layout);
         Bundle info = getArguments();
         user_id = info.getString("user_id");
-        arrItem.add(new ItemSaleMain(R.drawable.test_img));
-        arrItem.add(new ItemSaleMain(R.drawable.test_img));
-        arrItem.add(new ItemSaleMain(R.drawable.test_img));
+        arrItem.add(new ItemSaleMain(R.drawable.sale_1));
+        arrItem.add(new ItemSaleMain(R.drawable.sale_2));
+        arrItem.add(new ItemSaleMain(R.drawable.sale_3));
         VpSaleMainFmAdapter vpSaleMainFmAdapter = new VpSaleMainFmAdapter(arrItem);
         vpSaleMain.setAdapter(vpSaleMainFmAdapter);
-        GetProductData();
+
         PopupMenu popupMenu = new PopupMenu(getActivity(),edtSearch);
         edtSearch.addTextChangedListener(new TextWatcher() {
             @Override
@@ -326,7 +329,14 @@ public class NewProductFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        GetProductData();
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                GetBrandData();
+                refreshLayout.setRefreshing(false);
+            }
+        });
     }
     @Override
     public void onDestroy() {

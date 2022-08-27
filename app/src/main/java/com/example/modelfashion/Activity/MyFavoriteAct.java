@@ -1,11 +1,14 @@
 package com.example.modelfashion.Activity;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -66,6 +69,7 @@ public class MyFavoriteAct extends AppCompatActivity {
                 for (int i=0; i<arrProduct.size(); i++){
                     arrType.add(arrProduct.get(i).getType());
                 }
+                Log.e("user4",user_id);
                 Set<String> filter_type = new LinkedHashSet<>();
                 filter_type.addAll(arrType);
                 arrType.clear();
@@ -103,6 +107,7 @@ public class MyFavoriteAct extends AppCompatActivity {
                         }
                     }
                 });
+
                 productAdapter.onItemClickListener(new ProductAdapter.OnItemClick() {
                     @Override
                     public void imgClick(int position, MyProduct product) {
@@ -115,6 +120,40 @@ public class MyFavoriteAct extends AppCompatActivity {
                     @Override
                     public void imgAddToFavoriteClick(int position, MyProduct product) {
                         Toast.makeText(MyFavoriteAct.this, "Sản phẩm đang theo dõi", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void imgRemoveFavorite(int position, MyProduct product) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(MyFavoriteAct.this);
+                        builder.setMessage("Bạn muốn bỏ theo dõi sản phẩm này?");
+                        builder.setCancelable(true);
+                        builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                builder.create().dismiss();
+                            }
+                        });
+                        builder.setPositiveButton("Đồng ý", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                ApiRetrofit.apiRetrofit.RemoveUserFavorite(user_id, product.getId()).enqueue(new Callback<String>() {
+                                    @Override
+                                    public void onResponse(Call<String> call, Response<String> response) {
+                                        if(response.body().equals("ok")){
+                                            arrProduct.remove(position);
+                                            productAdapter.notifyDataSetChanged();
+                                            Toast.makeText(MyFavoriteAct.this, "Đã bỏ theo dõi sản phẩm", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<String> call, Throwable t) {
+
+                                    }
+                                });
+                            }
+                        });
+                        builder.create().show();
                     }
                 });
             }
@@ -134,7 +173,6 @@ public class MyFavoriteAct extends AppCompatActivity {
                 arrProduct.addAll(response.body());
                 productAdapter.notifyDataSetChanged();
             }
-
             @Override
             public void onFailure(Call<ArrayList<MyProduct>> call, Throwable t) {
 
