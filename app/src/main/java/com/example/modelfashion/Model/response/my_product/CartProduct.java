@@ -17,6 +17,7 @@ public class CartProduct {
     @SerializedName("quantity")
     @Expose
     private String quantity;
+    private boolean isCheck;
 
     public String getCartId() {
         return cartId;
@@ -56,5 +57,13 @@ public class CartProduct {
 
     public void setQuantity(String quantity) {
         this.quantity = quantity;
+    }
+
+    public boolean getIsCheck() {
+        return isCheck;
+    }
+
+    public void setIsCheck(boolean isCheck) {
+        this.isCheck = isCheck;
     }
 }
