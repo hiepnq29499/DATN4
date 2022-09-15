@@ -104,10 +104,6 @@ public interface ApiRetrofit {
     Call<String> InsertPayment(@Field("user_id") String user_id, @Field("amount") String amount,
                                @Field("date_created") String date_created, @Field("arr_sizes") String arr_sizes);
 
-
-    @GET("get_bill_by_user_id.php")
-    Call<ArrayList<Bill>> GetBillByUserId(@Query("user_id") String user_id, @Query("status") String status);
-
     @GET("get_all_product_by_detail_id.php")
     Call<ArrayList<MyProduct>> GetProductByDetailId(@Query("detail_id") JSONArray detail_id);
 
@@ -141,9 +137,13 @@ public interface ApiRetrofit {
     @GET("get_rating_by_product.php")
     Call<ArrayList<Rating>> GetProductRating(@Query("product_id") String product_id);
 
-    @GET("bill_filter.php")
-    Call<ArrayList<Bill>> GetBillFilted(@Query("month") String month, @Query("year") String year, @Query("status") String status,
-                                        @Query("order") String order, @Query("user_id") String user_id);
+    @GET("get_bill_by_user_id.php")
+    Call<ArrayList<Bill>> GetBillFilted(@Query("user_id") String user_id, @Query("date_created") String date_created, @Query("status") String status,
+                                        @Query("order") String order);
+
+    @GET("get_bill_by_user_id.php")
+    Call<ArrayList<Bill>> GetBillByUserId(@Query("user_id") String user_id, @Query("date_created") String date_created, @Query("status") String status);
+
 
     @GET("get_all_brand.php")
     Call<ArrayList<Brand>> GetAllBrand();

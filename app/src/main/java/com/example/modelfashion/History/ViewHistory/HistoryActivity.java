@@ -104,7 +104,7 @@ public class HistoryActivity extends AppCompatActivity {
             case 4: status = "Đã giao";
                     break;
         }
-        ApiRetrofit.apiRetrofit.GetBillByUserId(user_id, status).enqueue(new Callback<ArrayList<Bill>>() {
+        ApiRetrofit.apiRetrofit.GetBillByUserId(user_id,"1900-01-01", status).enqueue(new Callback<ArrayList<Bill>>() {
             @Override
             public void onResponse(Call<ArrayList<Bill>> call, Response<ArrayList<Bill>> response) {
                 arr_bill = response.body();
