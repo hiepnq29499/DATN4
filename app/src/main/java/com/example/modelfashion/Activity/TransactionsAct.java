@@ -15,12 +15,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.modelfashion.Adapter.OrderHistoryAdapter;
 import com.example.modelfashion.Interface.ApiRetrofit;
 import com.example.modelfashion.Model.response.bill.Bill;
 import com.example.modelfashion.R;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -97,7 +99,14 @@ public class TransactionsAct extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ArrayList<Bill>> call, Throwable t) {
-
+                progressDialog.hide();
+                Toast.makeText(getApplicationContext(), "Get data error", Toast.LENGTH_SHORT).show();
+                t.printStackTrace();
+                try {
+                    Log.i("GetBillByUserId", String.valueOf(call));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
 
