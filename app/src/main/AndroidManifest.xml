@@ -22,7 +22,7 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:theme" >
         <activity
-            android:name=".GiaodichActivity2"
+            android:name=".Activity.GiaodichActivity2"
             android:exported="false" />
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
