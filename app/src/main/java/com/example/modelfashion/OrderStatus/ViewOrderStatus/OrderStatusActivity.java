@@ -23,6 +23,7 @@ public class OrderStatusActivity extends AppCompatActivity {
     private List<ProductHistory> listProduct;
     private ListView lv_orderstatus;
     private ImageView img_orderstatus_back;
+    String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

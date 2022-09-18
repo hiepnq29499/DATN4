@@ -33,6 +33,7 @@ import retrofit2.Response;
 
 public class OrderDetailAct extends AppCompatActivity {
     String user_id = "";
+    int sodt = Integer.parseInt(null);
     Bill bill;
     RecyclerView rv_order;
     TextView tv_receiver, tv_address, tv_contact, tv_total, tv_cancel_order;
