@@ -6,10 +6,9 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.appchatfbasezz.ChatActivity;
-import com.example.appchatfbasezz.databinding.ActivityUserBinding;
-import com.example.appchatfbasezz.listeners.UserListener;
+import com.example.modelfashion.Activity.ChatActivity;
 import com.example.modelfashion.Utility.PreferenceManager;
+import com.example.modelfashion.databinding.ActivityUserBinding;
 import com.example.modelfashion.network.UserListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;

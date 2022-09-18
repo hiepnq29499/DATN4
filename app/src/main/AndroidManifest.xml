@@ -110,11 +110,6 @@
             android:configChanges="orientation|screenSize"
             android:exported="true" />
 
-        <activity
-            android:name=".MainMainActivity"
-            android:configChanges="orientation|screenSize"
-            android:exported="true" />
-
 
         <activity
             android:name=".Activity.ChatActivity"
@@ -125,6 +120,14 @@
                 android:value="" />
         </activity>
 
+        <activity
+            android:name=".SignupChatActivity"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".SigninChatActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize"/>
 
         <service
             android:name=".Utility.FirebaseService"
