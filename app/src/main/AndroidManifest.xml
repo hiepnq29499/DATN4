@@ -110,6 +110,11 @@
             android:configChanges="orientation|screenSize"
             android:exported="true" />
 
+        <activity
+            android:name=".MainMainActivity"
+            android:configChanges="orientation|screenSize"
+            android:exported="true" />
+
 
         <activity
             android:name=".Activity.ChatActivity"

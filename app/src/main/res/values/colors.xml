@@ -47,4 +47,12 @@
     <color name="background_item_navigation">#FFFFFF</color>
     <color name="tint_item_navigation">#AEAEB2</color>
     <color name="tint_item_navigation_choice">#8E97FD</color>
+
+    <color name="primary">#FFBB86FC</color>
+    <color name="primary_dark">#FF6200EE</color>
+    <color name="primary_text">#FF3700B3</color>
+    <color name="secondary_text">#FF03DAC5</color>
+    <color name="input_background">#FF000000</color>
+    <color name="err">#FFFFFFFF</color>
+    <color name="receive_mess">#FF000000</color>
 </resources>
