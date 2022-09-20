@@ -31,7 +31,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class OrderDetailAct extends AppCompatActivity {
+public class EvaluateActivity2 extends AppCompatActivity {
     String user_id = "";
     Bill bill;
     RecyclerView rv_order;
@@ -61,14 +61,14 @@ public class OrderDetailAct extends AppCompatActivity {
         tv_address.setText("Address: "+bill.getStreetAddress()+","+bill.getCity());
         tv_contact.setText("Contact: "+bill.getContact());
         tv_total.setText("Total: "+money_format+" VNĐ");
-        OrderDetailAdapter orderDetailAdapter = new OrderDetailAdapter(OrderDetailAct.this, arr_bill_detail, bill.getStatus());
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(OrderDetailAct.this, LinearLayoutManager.VERTICAL, false);
+        OrderDetailAdapter orderDetailAdapter = new OrderDetailAdapter(EvaluateActivity2.this, arr_bill_detail, bill.getStatus());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(EvaluateActivity2.this, LinearLayoutManager.VERTICAL, false);
         rv_order.setLayoutManager(linearLayoutManager);
         rv_order.setAdapter(orderDetailAdapter);
         orderDetailAdapter.OnItemClickListener(new OrderDetailAdapter.OnClickItemListener() {
             @Override
             public void OnRateClick(int position) {
-                Dialog dialog = new Dialog(OrderDetailAct.this);
+                Dialog dialog = new Dialog(EvaluateActivity2.this);
                 dialog.setContentView(R.layout.rating_product_layout);
                 dialog.setCancelable(true);
                 ImageView img_1_score = dialog.findViewById(R.id.img_1_score);
@@ -91,7 +91,7 @@ public class OrderDetailAct extends AppCompatActivity {
                             @Override
                             public void onResponse(Call<String> call, Response<String> response) {
                                 Log.e("rating", response.body());
-                                Toast.makeText(OrderDetailAct.this, "Cảm ơn bạn đã đánh giá sản phẩm của chúng tôi", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(EvaluateActivity2.this, "Cảm ơn bạn đã đánh giá sản phẩm của chúng tôi", Toast.LENGTH_SHORT).show();
                                 dialog.cancel();
                             }
 
@@ -107,7 +107,7 @@ public class OrderDetailAct extends AppCompatActivity {
 
             @Override
             public void OnItemClick(int position) {
-                Intent intent = new Intent(OrderDetailAct.this,NewProductDetailAct.class);
+                Intent intent = new Intent(EvaluateActivity2.this,NewProductDetailAct.class);
                 intent.putExtra("user_id",user_id);
                 intent.putExtra(Constants.KEY_PRODUCT_ID,arr_bill_detail.get(position).getProductId());
                 startActivity(intent);
@@ -125,9 +125,9 @@ public class OrderDetailAct extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<String> call, Response<String> response) {
                         if(response.body().equals("ok")){
-                            Toast.makeText(OrderDetailAct.this, "Đơn hàng của bạn đang được chờ hủy", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(EvaluateActivity2.this, "Đơn hàng của bạn đang được chờ hủy", Toast.LENGTH_SHORT).show();
                         }else {
-                            Toast.makeText(OrderDetailAct.this, "Đơn hàng của bạn hiện không thể hủy", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(EvaluateActivity2.this, "Đơn hàng của bạn hiện không thể hủy", Toast.LENGTH_SHORT).show();
                         }
                     }
 
