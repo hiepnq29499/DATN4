@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.modelfashion" >
+    package="com.example.modelfashion">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -20,7 +20,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
         android:usesCleartextTraffic="true"
-        tools:replace="android:theme" >
+        tools:replace="android:theme">
+        <activity
+            android:name=".EvaluateActivity2"
+            android:exported="false" />
         <activity
             android:name=".Activity.GiaodichActivity2"
             android:exported="false" />
@@ -75,7 +78,7 @@
         <activity
             android:name=".Activity.SplashActivity"
             android:exported="true"
-            android:noHistory="true" >
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -131,7 +134,7 @@
 
         <service
             android:name=".Utility.FirebaseService"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
