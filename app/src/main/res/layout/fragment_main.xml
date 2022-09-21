@@ -55,7 +55,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/refresh_layout"
         android:layout_width="0dp"

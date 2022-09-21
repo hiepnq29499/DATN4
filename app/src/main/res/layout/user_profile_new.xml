@@ -118,196 +118,191 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="420dp"
+            android:layout_height="570dp"
             android:background="@color/white"
             android:orientation="vertical"
             tools:layout_editor_absoluteX="25dp">
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
                 android:layout_marginVertical="5dp"
+                android:layout_marginStart="30dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="User name"
-                    android:textSize="20sp"
                     android:textColor="#9F9F9F"
-                    />
+                    android:textSize="20sp" />
 
                 <TextView
+                    android:id="@+id/tv_profile_name2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="toandaukho123"
-                    android:id="@+id/tv_profile_name2"
                     android:textColor="@color/black"
-                    android:textSize="17sp"
-                    />
+                    android:textSize="17sp" />
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#EFEFEF"
-                />
+                android:background="#EFEFEF" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
                 android:layout_marginVertical="5dp"
+                android:layout_marginStart="30dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Email"
-                    android:textSize="20sp"
                     android:textColor="#9F9F9F"
-                    />
+                    android:textSize="20sp" />
 
                 <TextView
+                    android:id="@+id/tv_profile_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="trankhanhtoan8386@gmail.com"
                     android:textColor="@color/black"
-                    android:id="@+id/tv_profile_email"
-                    android:textSize="17sp"
-                    />
+                    android:textSize="17sp" />
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#EFEFEF"
-                />
+                android:background="#EFEFEF" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
                 android:layout_marginVertical="5dp"
+                android:layout_marginStart="30dp"
                 android:orientation="vertical">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="First and last name"
-                    android:textSize="20sp"
                     android:textColor="#9F9F9F"
-                    />
+                    android:textSize="20sp" />
+
                 <TextView
+                    android:id="@+id/tv_profile_fullname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Trần Khánh Toàn"
                     android:textColor="@color/black"
-                    android:id="@+id/tv_profile_fullname"
-                    android:textSize="17sp"
-                    />
+                    android:textSize="17sp" />
+
                 <TextView
+                    android:id="@+id/tv_profile_change_fullname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Change"
-                    android:id="@+id/tv_profile_change_fullname"
-                    android:textSize="17sp"
-                    android:textColor="#374089"
                     android:fontFamily="@font/nunito_bold"
-                    />
+                    android:text="Change"
+                    android:textColor="#374089"
+                    android:textSize="17sp" />
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#EFEFEF"
-                />
+                android:background="#EFEFEF" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
                 android:layout_marginVertical="5dp"
+                android:layout_marginStart="30dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Phone number"
-                    android:textSize="20sp"
-                    />
+                    android:textSize="20sp" />
 
                 <TextView
+                    android:id="@+id/tv_profile_phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0969537055"
-                    android:id="@+id/tv_profile_phone"
                     android:textColor="@color/black"
-                    android:textSize="17sp"
-                    />
+                    android:textSize="17sp" />
+
                 <TextView
+                    android:id="@+id/tv_profile_change_phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Change"
-                    android:id="@+id/tv_profile_change_phone"
-                    android:textSize="17sp"
-                    android:textColor="#374089"
                     android:fontFamily="@font/nunito_bold"
-                    />
+                    android:text="Change"
+                    android:textColor="#374089"
+                    android:textSize="17sp" />
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#EFEFEF"
-                />
+                android:background="#EFEFEF" />
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
                 android:layout_marginVertical="5dp"
+                android:layout_marginStart="30dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Sex"
-                    android:textSize="20sp"
-                    />
+                    android:textSize="20sp" />
 
                 <TextView
+                    android:id="@+id/tv_profile_gender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Name"
-                    android:id="@+id/tv_profile_gender"
                     android:textColor="@color/black"
-                    android:textSize="17sp"
-                    />
+                    android:textSize="17sp" />
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#EFEFEF"
-                />
+                android:background="#EFEFEF" />
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="13dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="20dp"
                 android:orientation="vertical">
+
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Change password"
                     android:id="@+id/tv_profile_change_pw"
-                    android:textSize="17sp"
-                    android:textColor="#374089"
-                    android:fontFamily="@font/nunito_bold"
-                    />
-                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Logout"
-                    android:id="@+id/tv_profile_logout"
-                    android:textSize="17sp"
-                    android:textColor="#374089"
                     android:fontFamily="@font/nunito_bold"
-                    />
+                    android:text="Change password"
+                    android:textColor="#374089"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/tv_profile_logout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_bold"
+                    android:text="Logout"
+                    android:textColor="#374089"
+                    android:textSize="20sp" />
 
             </LinearLayout>
 

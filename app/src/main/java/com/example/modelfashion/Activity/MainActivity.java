@@ -47,6 +47,7 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity {
     private static final String CHANNEL_ID = "100";
     String user_id;
+    //String uxser_id;
     String account_type;
     Boolean isLogin;
     Bundle info;

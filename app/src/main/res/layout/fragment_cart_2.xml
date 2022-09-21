@@ -93,19 +93,19 @@
             android:layout_weight="1.2">
 
         <Button
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/border_button_payment"
-                android:text="Continue to Payment"
-                android:textColor="@color/white"
-                android:id="@+id/btn_payment_new_cart"
-                android:textSize="18sp"
-                android:fontFamily="@font/montserrat_bold"
-                android:textAllCaps="false"
-                android:layout_marginLeft="32dp"
-                android:layout_marginRight="32dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp" />
+            android:id="@+id/btn_payment_new_cart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/border_button_payment"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Continue to Payment"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
     </LinearLayout>
 
 

@@ -2,7 +2,9 @@ package com.example.modelfashion.Fragment;
 
 import static com.example.modelfashion.Utility.Constants.KEY_PRODUCT_ID;
 import static com.example.modelfashion.Utility.Constants.KEY_PRODUCT_NAME;
+import static com.facebook.FacebookSdk.getApplicationContext;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,12 +27,15 @@ import com.example.modelfashion.Activity.ProductDetailActivity;
 import com.example.modelfashion.Adapter.ProductListAdapter;
 import com.example.modelfashion.Adapter.VpSaleMainFmAdapter;
 import com.example.modelfashion.Interface.ApiRetrofit;
+import com.example.modelfashion.MainMainActivity;
 import com.example.modelfashion.Model.ItemSaleMain;
 import com.example.modelfashion.Model.response.User.User;
 import com.example.modelfashion.Model.response.my_product.MyProduct;
 import com.example.modelfashion.R;
 import com.example.modelfashion.Utility.Constants;
 import com.example.modelfashion.network.Repository;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -78,11 +84,10 @@ public class MainFragment extends Fragment {
     }
 
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         refreshLayout = view.findViewById(R.id.refresh_layout);
         vpSaleMain = view.findViewById(R.id.vp_sale_main_fm);
@@ -236,4 +241,8 @@ public class MainFragment extends Fragment {
         mRunable = null;
         mHandler = null;
     }
+
+//    public void onclick(View view) {
+//        Toast.makeText(getContext(), "abc", Toast.LENGTH_SHORT).show();
+//    }
 }
