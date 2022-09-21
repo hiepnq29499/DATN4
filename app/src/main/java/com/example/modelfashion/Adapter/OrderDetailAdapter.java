@@ -46,12 +46,12 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
         ApiRetrofit.apiRetrofit.GetProductById(arrBillDetail.get(position).getProductId()).enqueue(new Callback<MyProduct>() {
             @Override
             public void onResponse(Call<MyProduct> call, Response<MyProduct> response) {
-                Glide.with(context).load(response.body().getPhotos().get(0).replace("localhost", Constants.KEY_IP)).into(holder.img_product);
+                Glide.with(context).load(response.body().getPhotos().get(0)).into(holder.img_product);
             }
 
             @Override
             public void onFailure(Call<MyProduct> call, Throwable t) {
-
+                t.printStackTrace();
             }
         });
         if(!status.equalsIgnoreCase("Đã giao")){

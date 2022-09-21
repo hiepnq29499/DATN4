@@ -1,8 +1,11 @@
 package com.example.modelfashion.Fragment;
 
+import static android.content.Context.MODE_MULTI_PROCESS;
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,6 +34,7 @@ import com.example.modelfashion.Model.Product;
 import com.example.modelfashion.Model.response.my_product.CartProduct;
 import com.example.modelfashion.Model.response.my_product.MyProduct;
 import com.example.modelfashion.R;
+import com.example.modelfashion.Utility.Constants;
 import com.google.android.gms.common.api.Api;
 
 import org.json.JSONArray;
@@ -86,7 +90,7 @@ public class NewCartFragment extends Fragment {
         user_id = info.getString("user_id");
         tv_total_amount.setText("0 VND");
         AppMoMoLib.getInstance().setEnvironment(AppMoMoLib.ENVIRONMENT.DEVELOPMENT); // AppMoMoLib.ENVIRONMENT.PRODUCTION
-        if (user_id != "null") {
+        if (!"null".equals(user_id)) {
             SetCartData(user_id);
         }
         tv_add_address.setOnClickListener(new View.OnClickListener() {
@@ -98,6 +102,17 @@ public class NewCartFragment extends Fragment {
         cb_choice_all_cart_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (arrCartProduct.isEmpty()) {
+                    cb_choice_all_cart_item.setChecked(false);
+                    Toast.makeText(view.getContext(), "Bạn chưa có sản phẩm nào trong giỏ", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if ("null".equals(user_id)) {
+                    cb_choice_all_cart_item.setChecked(false);
+                    Toast.makeText(view.getContext(), "Bạn chưa đăng nhập", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 for (CartProduct item : arrCartProduct) {
                     item.setIsCheck(cb_choice_all_cart_item.isChecked());
                 }
@@ -223,6 +238,25 @@ public class NewCartFragment extends Fragment {
     }
 
     private void SetPayment() {
+        try {
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Constants.KEY_SAVE_USER, MODE_MULTI_PROCESS);
+            if (sharedPreferences.contains(Constants.KEY_GET_USER)) {
+                String userData = sharedPreferences.getString(Constants.KEY_GET_USER, "");
+                JSONObject obj = new JSONObject(userData);
+                String phone = obj.getString(Constants.KEY_PHONE);
+                if (phone.trim().isEmpty() || "empty".equals(phone)) {
+                    Toast.makeText(getContext(), "Bạn cần cập nhật sdt để sử dụng tính năng này", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            } else {
+                throw null;
+            }
+        } catch (Throwable t) {
+            t.printStackTrace();
+            Toast.makeText(getContext(), "Bạn cần đăng nhập để sử dụng tính năng này", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         if (sumTotalCart() != 0) {
             ApiRetrofit.apiRetrofit.GetDeliveryInfo(user_id).enqueue(new Callback<DeliveryInfo>() {
                 @Override

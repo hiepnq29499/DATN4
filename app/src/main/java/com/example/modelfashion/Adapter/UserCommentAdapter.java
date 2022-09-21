@@ -46,7 +46,7 @@ public class UserCommentAdapter extends RecyclerView.Adapter<UserCommentAdapter.
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-
+                t.printStackTrace();
             }
         });
     }

@@ -41,7 +41,7 @@ public class Bill implements Parcelable {
     private String amount;
     @SerializedName("bill_detail")
     @Expose
-    private ArrayList<BillDetail> billDetail = null;
+    private ArrayList<BillDetail> billDetail;
 
     protected Bill(Parcel in) {
         billId = in.readString();
